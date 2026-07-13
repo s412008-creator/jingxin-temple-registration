@@ -1,0 +1,3230 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+    <title>境心殿信眾報名</title>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;600;700;900&family=Noto+Sans+TC:wght@400;500;700&display=swap"
+          rel="stylesheet"
+        />
+        <script src="image-slot.js"></script>
+        <style>
+          * {
+            box-sizing: border-box;
+          }
+          html,
+          body {
+            margin: 0;
+            padding: 0;
+          }
+          body {
+            background: #2e241b;
+            font-family: "Noto Sans TC", sans-serif;
+            color: #3b3128;
+            -webkit-font-smoothing: antialiased;
+          }
+          a {
+            color: #b23b34;
+            text-decoration: none;
+          }
+          a:hover {
+            color: #97302a;
+          }
+          input,
+          select,
+          textarea,
+          button {
+            font-family: inherit;
+          }
+          select {
+            -webkit-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%237A5C3E' stroke-width='1.6'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+          }
+          ::placeholder {
+            color: #b3a88f;
+          }
+          @keyframes fadeUp {
+            from {
+              opacity: 0;
+              transform: translateY(14px);
+            }
+            to {
+              opacity: 1;
+              transform: none;
+            }
+          }
+          @keyframes floatY {
+            0%,
+            100% {
+              transform: translateY(0);
+            }
+            50% {
+              transform: translateY(-6px);
+            }
+          }
+          ::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+          }
+
+          /* Extracted Classes */
+          .btn-card-primary {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            width: 100%;
+            padding: 16px 18px;
+            border: 1.5px solid #ecdfc2;
+            border-left: 5px solid #c6a15b;
+            border-radius: 16px;
+            background: #fffcf4;
+            cursor: pointer;
+            text-align: left;
+          }
+          .btn-card-danger {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            width: 100%;
+            padding: 16px 18px;
+            border: 1.5px solid #ecdfc2;
+            border-left: 5px solid #b23b34;
+            border-radius: 16px;
+            background: #fffcf4;
+            cursor: pointer;
+            text-align: left;
+          }
+          .btn-card-brown {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            width: 100%;
+            padding: 16px 18px;
+            border: 1.5px solid #ecdfc2;
+            border-left: 5px solid #7a5c3e;
+            border-radius: 16px;
+            background: #fffcf4;
+            cursor: pointer;
+            text-align: left;
+          }
+          .ceremony-card {
+            border: 1px solid #ecdfc2;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #fffcf4;
+            box-shadow: 0 6px 18px rgba(60, 49, 40, 0.06);
+          }
+          .ceremony-title {
+            font-family: "Noto Serif TC", serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: #3b3128;
+          }
+          .section-title {
+            font-family: "Noto Serif TC", serif;
+            font-weight: 700;
+            font-size: 22px;
+            color: #3b3128;
+          }
+          .contact-card {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 15px 16px;
+            border: 1px solid #ecdfc2;
+            border-radius: 14px;
+            background: #fffcf4;
+          }
+          .flow-title {
+            font-family: "Noto Serif TC", serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: #3b3128;
+          }
+          .btn-submit-gold {
+            margin-top: 14px;
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 13px;
+            background: #c6a15b;
+            color: #2e241b;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+          }
+          .btn-submit-red {
+            margin-top: 14px;
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 13px;
+            background: #b23b34;
+            color: #fff9ed;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+          }
+          .btn-submit-brown {
+            margin-top: 14px;
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 13px;
+            background: #7a5c3e;
+            color: #fff9ed;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+          }
+          .form-input {
+            width: 100%;
+            padding: 15px 16px;
+            font-size: 17px;
+            border-radius: 12px;
+            border: 1.5px solid #e6dac2;
+            background: #fffcf4;
+            color: #3b3128;
+            outline: none;
+          }
+          .form-label {
+            display: block;
+            font-size: 15px;
+            color: #7a5c3e;
+            font-weight: 600;
+            margin-bottom: 7px;
+          }
+          .form-label-mb9 {
+            display: block;
+            font-size: 15px;
+            color: #7a5c3e;
+            font-weight: 600;
+            margin-bottom: 9px;
+          }
+          .info-box {
+            border: 1px solid #ecdfc2;
+            border-radius: 16px;
+            background: #fffcf4;
+            padding: 16px 18px;
+          }
+          .sub-section-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 24px 2px 12px;
+          }
+          .sub-section-bar {
+            width: 4px;
+            height: 18px;
+            border-radius: 2px;
+            background: #c6a15b;
+          }
+          .sub-section-title {
+            font-family: "Noto Serif TC", serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: #3b3128;
+          }
+        </style>
+      </helmet>
+
+      <div
+        style="
+          min-height: 100vh;
+          display: flex;
+          justify-content: center;
+          background: radial-gradient(
+            120% 60% at 50% 0%,
+            #3a2c20 0%,
+            #251c14 100%
+          );
+        "
+      >
+        <div
+          style="
+            width: 100%;
+            max-width: 480px;
+            min-height: 100vh;
+            background: #f6efe1;
+            position: relative;
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+          "
+        >
+          <!-- ===== HOME ===== -->
+          <div
+            style="
+              position: sticky;
+              top: 0;
+              z-index: 20;
+              display: flex;
+              align-items: center;
+              gap: 11px;
+              padding: 12px 18px;
+              background: rgba(246, 239, 225, 0.86);
+              backdrop-filter: blur(12px);
+              border-bottom: 1px solid #e6dac2;
+            "
+          >
+            <div
+              style="
+                width: 38px;
+                height: 38px;
+                border-radius: 50%;
+                overflow: hidden;
+                border: 1.5px solid #d8c79e;
+                flex: none;
+              "
+            >
+              <img
+                src="images/logo.png"
+                alt="境心殿"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+            </div>
+            <div style="line-height: 1.2">
+              <div
+                style="
+                  font-family: &quot;Noto Serif TC&quot;, serif;
+                  font-weight: 700;
+                  font-size: 17px;
+                  color: #3b3128;
+                  letter-spacing: 1px;
+                "
+              >
+                境心殿無極道院
+              </div>
+              <div style="font-size: 11px; color: #a8823c; letter-spacing: 3px">
+                玉皇三公主
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero -->
+          <div style="position: relative; height: 452px; overflow: hidden">
+            <div style="position: absolute; inset: 0">
+              <image-slot
+                id="hero-photo"
+                shape="rect"
+                fit="cover"
+                placeholder="廟宇主視覺照片"
+              ></image-slot>
+            </div>
+            <div
+              style="
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(
+                  180deg,
+                  rgba(46, 36, 27, 0.28) 0%,
+                  rgba(46, 36, 27, 0.15) 40%,
+                  rgba(37, 28, 20, 0.82) 100%
+                );
+                pointer-events: none;
+              "
+            ></div>
+            <div
+              style="
+                position: absolute;
+                inset: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-end;
+                text-align: center;
+                padding: 0 26px 34px;
+                pointer-events: none;
+              "
+            >
+              <div
+                style="
+                  width: 118px;
+                  height: 118px;
+                  border-radius: 50%;
+                  overflow: hidden;
+                  border: 4px solid rgba(246, 239, 225, 0.92);
+                  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+                  animation: floatY 6s ease-in-out infinite;
+                "
+              >
+                <img
+                  src="images/logo.png"
+                  alt="境心殿"
+                  style="width: 100%; height: 100%; object-fit: cover"
+                />
+              </div>
+              <div
+                style="
+                  font-family: &quot;Noto Serif TC&quot;, serif;
+                  font-weight: 900;
+                  font-size: 31px;
+                  color: #fff9ed;
+                  margin-top: 16px;
+                  letter-spacing: 3px;
+                  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+                "
+              >
+                境心殿無極道院
+              </div>
+              <div
+                style="
+                  font-size: 15px;
+                  color: #f1e4c4;
+                  margin-top: 8px;
+                  letter-spacing: 2px;
+                  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+                "
+              >
+                玉皇三公主・護佑十方善信
+              </div>
+              <div
+                style="
+                  margin-top: 16px;
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 7px;
+                  padding: 7px 16px;
+                  border-radius: 999px;
+                  background: rgba(198, 161, 91, 0.92);
+                  color: #2e241b;
+                  font-size: 13px;
+                  font-weight: 700;
+                  letter-spacing: 1px;
+                "
+              >
+                <span
+                  style="
+                    width: 7px;
+                    height: 7px;
+                    border-radius: 50%;
+                    background: #b23b34;
+                    box-shadow: 0 0 0 3px rgba(178, 59, 52, 0.3);
+                  "
+                ></span
+                >年度法會・線上報名開放中
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick CTA -->
+          <div
+            style="
+              padding: 22px 18px 6px;
+              display: flex;
+              flex-direction: column;
+              gap: 12px;
+            "
+          >
+            <button onclick="{{ openLighting }}" class="btn-card-primary">
+              <div style="flex: 1">
+                <div
+                  style="
+                    font-family: &quot;Noto Serif TC&quot;, serif;
+                    font-weight: 700;
+                    font-size: 19px;
+                    color: #3b3128;
+                  "
+                >
+                  點燈祈福
+                </div>
+                <div style="font-size: 13px; color: #8a7d66; margin-top: 2px">
+                  一盞明燈，照亮闔家一整年
+                </div>
+              </div>
+              <span style="font-size: 22px; color: #c6a15b">›</span>
+            </button>
+            <button onclick="{{ openPudu }}" class="btn-card-danger">
+              <div style="flex: 1">
+                <div
+                  style="
+                    font-family: &quot;Noto Serif TC&quot;, serif;
+                    font-weight: 700;
+                    font-size: 19px;
+                    color: #3b3128;
+                  "
+                >
+                  中元普渡
+                </div>
+                <div style="font-size: 13px; color: #8a7d66; margin-top: 2px">
+                  慎終追遠，普施十方
+                </div>
+              </div>
+              <span style="font-size: 22px; color: #b23b34">›</span>
+            </button>
+            <button onclick="{{ openLidou }}" class="btn-card-brown">
+              <div style="flex: 1">
+                <div
+                  style="
+                    font-family: &quot;Noto Serif TC&quot;, serif;
+                    font-weight: 700;
+                    font-size: 19px;
+                    color: #3b3128;
+                  "
+                >
+                  禮斗祈安
+                </div>
+                <div style="font-size: 13px; color: #8a7d66; margin-top: 2px">
+                  安奉斗燈，祈求元辰光彩
+                </div>
+              </div>
+              <span style="font-size: 22px; color: #7a5c3e">›</span>
+            </button>
+          </div>
+
+          <!-- 年度法會 cards -->
+          <div style="padding: 26px 18px 4px">
+            <div
+              style="
+                display: flex;
+                align-items: baseline;
+                gap: 10px;
+                margin-bottom: 4px;
+              "
+            >
+              <div class="section-title">年度法會</div>
+              <div style="height: 1px; flex: 1; background: #e2d4b6"></div>
+            </div>
+            <div style="font-size: 13px; color: #9a8c72; margin-bottom: 16px">
+              選擇法會，為家人祈福報名
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 16px">
+              <div class="ceremony-card">
+                <div style="position: relative; height: 150px">
+                  <image-slot
+                    id="card-lighting"
+                    shape="rect"
+                    fit="cover"
+                    placeholder="點燈法會照片"
+                  ></image-slot>
+                  <div
+                    style="
+                      position: absolute;
+                      top: 12px;
+                      left: 12px;
+                      padding: 5px 12px;
+                      border-radius: 999px;
+                      background: rgba(198, 161, 91, 0.95);
+                      color: #2e241b;
+                      font-size: 12px;
+                      font-weight: 700;
+                    "
+                  >
+                    點燈
+                  </div>
+                </div>
+                <div style="padding: 16px 18px 18px">
+                  <div class="ceremony-title">115 年度 祭解點燈法會</div>
+                  <div
+                    style="
+                      font-size: 14px;
+                      color: #8a7d66;
+                      margin-top: 5px;
+                      line-height: 1.6;
+                    "
+                  >
+                    祭解、平安燈、財神燈、藥師燈，虔誠點燈祈求闔家平安順遂。
+                  </div>
+                  <div
+                    style="
+                      font-size: 12.5px;
+                      color: #a8823c;
+                      margin-top: 8px;
+                      letter-spacing: 0.5px;
+                    "
+                  >
+                    活動 2026/01/31（六）– 02/01（日）
+                  </div>
+                  <button onclick="{{ openLighting }}" class="btn-submit-gold">
+                    立即報名
+                  </button>
+                </div>
+              </div>
+
+              <div class="ceremony-card">
+                <div style="position: relative; height: 150px">
+                  <image-slot
+                    id="card-pudu"
+                    shape="rect"
+                    fit="cover"
+                    placeholder="普渡法會照片"
+                  ></image-slot>
+                  <div
+                    style="
+                      position: absolute;
+                      top: 12px;
+                      left: 12px;
+                      padding: 5px 12px;
+                      border-radius: 999px;
+                      background: rgba(178, 59, 52, 0.95);
+                      color: #fff9ed;
+                      font-size: 12px;
+                      font-weight: 700;
+                    "
+                  >
+                    普渡
+                  </div>
+                </div>
+                <div style="padding: 16px 18px 18px">
+                  <div class="ceremony-title">中元普渡法會</div>
+                  <div
+                    style="
+                      font-size: 14px;
+                      color: #8a7d66;
+                      margin-top: 5px;
+                      line-height: 1.6;
+                    "
+                  >
+                    贊普、家普、薦拔超渡、法懺，慎終追遠、普施十方。
+                  </div>
+                  <div
+                    style="
+                      font-size: 12.5px;
+                      color: #a8823c;
+                      margin-top: 8px;
+                      letter-spacing: 0.5px;
+                    "
+                  >
+                    報名期間 2026/07/15 – 2026/08/20
+                  </div>
+                  <button onclick="{{ openPudu }}" class="btn-submit-red">
+                    立即報名
+                  </button>
+                </div>
+              </div>
+
+              <div class="ceremony-card">
+                <div style="position: relative; height: 150px">
+                  <image-slot
+                    id="card-lidou"
+                    shape="rect"
+                    fit="cover"
+                    placeholder="禮斗法會照片"
+                  ></image-slot>
+                  <div
+                    style="
+                      position: absolute;
+                      top: 12px;
+                      left: 12px;
+                      padding: 5px 12px;
+                      border-radius: 999px;
+                      background: rgba(122, 92, 62, 0.95);
+                      color: #fff9ed;
+                      font-size: 12px;
+                      font-weight: 700;
+                    "
+                  >
+                    禮斗
+                  </div>
+                </div>
+                <div style="padding: 16px 18px 18px">
+                  <div class="ceremony-title">禮斗祈安法會</div>
+                  <div
+                    style="
+                      font-size: 14px;
+                      color: #8a7d66;
+                      margin-top: 5px;
+                      line-height: 1.6;
+                    "
+                  >
+                    五福祥運斗、十二神尊斗、特殊斗首，安奉斗燈祈求元辰光彩。
+                  </div>
+                  <div
+                    style="
+                      font-size: 12.5px;
+                      color: #a8823c;
+                      margin-top: 8px;
+                      letter-spacing: 0.5px;
+                    "
+                  >
+                    報名期間 2026/09/01 – 2026/10/10
+                  </div>
+                  <button onclick="{{ openLidou }}" class="btn-submit-brown">
+                    立即報名
+                  </button>
+                </div>
+              </div>
+
+              <!-- locked demo -->
+              <button
+                onclick="{{ showClosedDemo }}"
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 14px;
+                  width: 100%;
+                  padding: 18px;
+                  border: 1.5px dashed #d8c79e;
+                  border-radius: 20px;
+                  background: #f1e8d5;
+                  cursor: pointer;
+                  text-align: left;
+                "
+              >
+                <div
+                  style="
+                    width: 44px;
+                    height: 44px;
+                    border-radius: 50%;
+                    background: #e4d6b6;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 20px;
+                  "
+                >
+                  🔒
+                </div>
+                <div style="flex: 1">
+                  <div
+                    style="
+                      font-family: &quot;Noto Serif TC&quot;, serif;
+                      font-weight: 700;
+                      font-size: 17px;
+                      color: #6e6355;
+                    "
+                  >
+                    安太歲法會
+                  </div>
+                  <div style="font-size: 13px; color: #9a8c72; margin-top: 2px">
+                    本年度報名已截止
+                  </div>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- 關於境心殿 -->
+          <div style="padding: 30px 18px 4px">
+            <div
+              style="
+                display: flex;
+                align-items: baseline;
+                gap: 10px;
+                margin-bottom: 14px;
+              "
+            >
+              <div class="section-title">關於境心殿</div>
+              <div style="height: 1px; flex: 1; background: #e2d4b6"></div>
+            </div>
+            <div
+              style="
+                border-radius: 18px;
+                overflow: hidden;
+                height: 180px;
+                margin-bottom: 16px;
+              "
+            >
+              <image-slot
+                id="about-photo"
+                shape="rect"
+                fit="cover"
+                placeholder="廟宇沿革／活動照片"
+              ></image-slot>
+            </div>
+            <p
+              style="
+                font-size: 15px;
+                line-height: 1.9;
+                color: #5c5142;
+                margin: 0 0 14px;
+              "
+            >
+              境心殿無極道院主祀玉皇三公主，庇佑十方善信。道院承襲傳統科儀，每年舉辦點燈、普渡、禮斗等法會，護佑信眾闔家平安、事業順遂。（本段內容由道院後台自行編輯。）
+            </p>
+            <div style="display: flex; flex-wrap: wrap; gap: 9px">
+              <span
+                style="
+                  padding: 7px 14px;
+                  border-radius: 999px;
+                  background: #fbf4e4;
+                  border: 1px solid #e6dac2;
+                  font-size: 13px;
+                  color: #7a5c3e;
+                "
+                >主祀・玉皇三公主</span
+              >
+              <span
+                style="
+                  padding: 7px 14px;
+                  border-radius: 999px;
+                  background: #fbf4e4;
+                  border: 1px solid #e6dac2;
+                  font-size: 13px;
+                  color: #7a5c3e;
+                "
+                >傳統科儀</span
+              >
+              <span
+                style="
+                  padding: 7px 14px;
+                  border-radius: 999px;
+                  background: #fbf4e4;
+                  border: 1px solid #e6dac2;
+                  font-size: 13px;
+                  color: #7a5c3e;
+                "
+                >年度法會</span
+              >
+              <span
+                style="
+                  padding: 7px 14px;
+                  border-radius: 999px;
+                  background: #fbf4e4;
+                  border: 1px solid #e6dac2;
+                  font-size: 13px;
+                  color: #7a5c3e;
+                "
+                >書文製作</span
+              >
+            </div>
+          </div>
+
+          <!-- 聯絡資訊 -->
+          <div style="padding: 30px 18px 8px">
+            <div
+              style="
+                display: flex;
+                align-items: baseline;
+                gap: 10px;
+                margin-bottom: 14px;
+              "
+            >
+              <div class="section-title">聯絡我們</div>
+              <div style="height: 1px; flex: 1; background: #e2d4b6"></div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 10px">
+              <a href="tel:0000000000" class="contact-card">
+                <div
+                  style="
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    background: #fbf0e9;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 18px;
+                  "
+                >
+                  📞
+                </div>
+                <div style="flex: 1">
+                  <div style="font-size: 12px; color: #9a8c72">電話</div>
+                  <div
+                    style="font-size: 16px; color: #3b3128; font-weight: 600"
+                  >
+                    (00) 0000-0000
+                  </div>
+                </div>
+                <span style="font-size: 20px; color: #c6a15b">›</span>
+              </a>
+              <a href="#" class="contact-card">
+                <div
+                  style="
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    background: #eaf3ec;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 18px;
+                  "
+                >
+                  💬
+                </div>
+                <div style="flex: 1">
+                  <div style="font-size: 12px; color: #9a8c72">
+                    LINE 官方帳號
+                  </div>
+                  <div
+                    style="font-size: 16px; color: #3b3128; font-weight: 600"
+                  >
+                    @jingxindian
+                  </div>
+                </div>
+                <span style="font-size: 20px; color: #c6a15b">›</span>
+              </a>
+              <a href="#" class="contact-card">
+                <div
+                  style="
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    background: #eaf0fa;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 18px;
+                  "
+                >
+                  📘
+                </div>
+                <div style="flex: 1">
+                  <div style="font-size: 12px; color: #9a8c72">
+                    Facebook 粉絲專頁
+                  </div>
+                  <div
+                    style="font-size: 16px; color: #3b3128; font-weight: 600"
+                  >
+                    境心殿無極道院
+                  </div>
+                </div>
+                <span style="font-size: 20px; color: #c6a15b">›</span>
+              </a>
+            </div>
+            <div
+              style="
+                margin-top: 12px;
+                border: 1px solid #ecdfc2;
+                border-radius: 16px;
+                overflow: hidden;
+                background: #fffcf4;
+              "
+            >
+              <div style="height: 150px; position: relative">
+                <image-slot
+                  id="map-photo"
+                  shape="rect"
+                  fit="cover"
+                  placeholder="Google Map 位置圖"
+                ></image-slot>
+              </div>
+              <div
+                style="
+                  padding: 14px 16px;
+                  display: flex;
+                  align-items: center;
+                  gap: 12px;
+                "
+              >
+                <div style="flex: 1">
+                  <div style="font-size: 12px; color: #9a8c72">道院地址</div>
+                  <div
+                    style="
+                      font-size: 15px;
+                      color: #3b3128;
+                      font-weight: 600;
+                      margin-top: 2px;
+                    "
+                  >
+                    ○○縣○○鄉○○路 000 號
+                  </div>
+                </div>
+                <a
+                  href="#"
+                  style="
+                    padding: 11px 16px;
+                    border-radius: 11px;
+                    background: #7a5c3e;
+                    color: #fff9ed;
+                    font-size: 14px;
+                    font-weight: 700;
+                  "
+                  >導航</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div style="padding: 26px 18px 40px; text-align: center">
+            <div
+              style="
+                font-family: &quot;Noto Serif TC&quot;, serif;
+                font-size: 15px;
+                color: #a8823c;
+                letter-spacing: 2px;
+              "
+            >
+              境心殿無極道院・玉皇三公主
+            </div>
+            <div
+              style="
+                font-size: 12px;
+                color: #b3a88f;
+                margin-top: 8px;
+                line-height: 1.7;
+              "
+            >
+              廟務 ERP 生態系統・信眾報名系統<br />© 2026 境心殿無極道院 敬啟
+            </div>
+          </div>
+
+          <!-- ===== FLOW OVERLAY ===== -->
+          <sc-if value="{{ inFlow }}" hint-placeholder-val="{{ false }}">
+            <div
+              style="
+                position: fixed;
+                inset: 0;
+                z-index: 50;
+                display: flex;
+                justify-content: center;
+                background: rgba(37, 28, 20, 0.55);
+              "
+            >
+              <div
+                ref="{{ setPanel }}"
+                style="
+                  width: 100%;
+                  max-width: 480px;
+                  height: 100vh;
+                  background: #f6efe1;
+                  overflow-y: auto;
+                  position: relative;
+                  display: flex;
+                  flex-direction: column;
+                "
+              >
+                <!-- flow header -->
+                <div
+                  style="
+                    position: sticky;
+                    top: 0;
+                    z-index: 10;
+                    background: rgba(246, 239, 225, 0.94);
+                    backdrop-filter: blur(12px);
+                    border-bottom: 1px solid #e6dac2;
+                  "
+                >
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      gap: 10px;
+                      padding: 13px 16px;
+                    "
+                  >
+                    <button
+                      onclick="{{ back }}"
+                      style="
+                        width: 38px;
+                        height: 38px;
+                        border-radius: 11px;
+                        border: 1px solid #e6dac2;
+                        background: #fffcf4;
+                        font-size: 19px;
+                        color: #7a5c3e;
+                        cursor: pointer;
+                      "
+                    >
+                      ‹
+                    </button>
+                    <div style="flex: 1; text-align: center; line-height: 1.25">
+                      <div class="flow-title">{{ cerName }}</div>
+                      <div style="font-size: 12px; color: #a8823c">
+                        {{ stepTitle }}
+                      </div>
+                    </div>
+                    <button
+                      onclick="{{ goHome }}"
+                      style="
+                        width: 38px;
+                        height: 38px;
+                        border-radius: 11px;
+                        border: 1px solid #e6dac2;
+                        background: #fffcf4;
+                        font-size: 15px;
+                        color: #7a5c3e;
+                        cursor: pointer;
+                      "
+                    >
+                      ✕
+                    </button>
+                  </div>
+                  <sc-if
+                    value="{{ showProgress }}"
+                    hint-placeholder-val="{{ false }}"
+                  >
+                    <div style="display: flex; gap: 6px; padding: 0 16px 12px">
+                      <sc-for
+                        list="{{ progress }}"
+                        as="p"
+                        hint-placeholder-count="5"
+                      >
+                        <div style="flex: 1; text-align: center">
+                          <div
+                            style="height:4px; border-radius:2px; background:{{ p.bar }};"
+                          ></div>
+                          <div
+                            style="font-size:10.5px; margin-top:5px; color:{{ p.color }}; font-weight:{{ p.weight }};"
+                          >
+                            {{ p.label }}
+                          </div>
+                        </div>
+                      </sc-for>
+                    </div>
+                  </sc-if>
+                </div>
+
+                <!-- flow body -->
+                <div style="flex: 1; padding: 22px 18px 30px">
+                  <!-- INTRO -->
+                  <sc-if
+                    value="{{ isIntro }}"
+                    hint-placeholder-val="{{ false }}"
+                  >
+                    <div style="animation: fadeUp 0.4s ease both">
+                      <div
+                        style="
+                          border-radius: 18px;
+                          overflow: hidden;
+                          height: 172px;
+                          margin-bottom: 18px;
+                        "
+                      >
+                        <image-slot
+                          id="flow-hero"
+                          shape="rect"
+                          fit="cover"
+                          placeholder="法會主視覺"
+                        ></image-slot>
+                      </div>
+                      <sc-if
+                        value="{{ isLighting }}"
+                        hint-placeholder-val="{{ false }}"
+                        ><div
+                          style="
+                            display: inline-block;
+                            padding: 5px 13px;
+                            border-radius: 999px;
+                            background: #b23b34;
+                            color: #fff9ed;
+                            font-size: 12.5px;
+                            font-weight: 700;
+                            letter-spacing: 1px;
+                            margin-bottom: 10px;
+                          "
+                        >
+                          {{ cerYear }}
+                        </div></sc-if
+                      >
+                      <div
+                        style="
+                          font-family: &quot;Noto Serif TC&quot;, serif;
+                          font-weight: 900;
+                          font-size: 26px;
+                          color: #3b3128;
+                        "
+                      >
+                        {{ cerName }}
+                      </div>
+                      <div
+                        style="font-size: 15px; color: #a8823c; margin-top: 6px"
+                      >
+                        {{ cerSub }}
+                      </div>
+                      <div
+                        style="
+                          margin-top: 18px;
+                          border: 1px solid #ecdfc2;
+                          border-radius: 16px;
+                          background: #fffcf4;
+                          padding: 4px 18px;
+                        "
+                      >
+                        <div
+                          style="
+                            display: flex;
+                            align-items: center;
+                            gap: 12px;
+                            padding: 14px 0;
+                            border-bottom: 1px solid #f0e7d3;
+                          "
+                        >
+                          <span
+                            style="
+                              width: 34px;
+                              text-align: center;
+                              font-size: 17px;
+                            "
+                            >🗓️</span
+                          >
+                          <div>
+                            <div style="font-size: 12px; color: #9a8c72">
+                              報名期間
+                            </div>
+                            <div
+                              style="
+                                font-size: 15px;
+                                color: #3b3128;
+                                font-weight: 600;
+                              "
+                            >
+                              {{ cerPeriod }}
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          style="
+                            display: flex;
+                            align-items: center;
+                            gap: 12px;
+                            padding: 14px 0;
+                          "
+                        >
+                          <span
+                            style="
+                              width: 34px;
+                              text-align: center;
+                              font-size: 17px;
+                            "
+                            >📍</span
+                          >
+                          <div>
+                            <div style="font-size: 12px; color: #9a8c72">
+                              法會地點
+                            </div>
+                            <div
+                              style="
+                                font-size: 15px;
+                                color: #3b3128;
+                                font-weight: 600;
+                              "
+                            >
+                              {{ cerPlace }}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <p
+                        style="
+                          font-size: 15px;
+                          line-height: 1.9;
+                          color: #5c5142;
+                          margin: 18px 2px 0;
+                        "
+                      >
+                        {{ cerDesc }}
+                      </p>
+
+                      <sc-if
+                        value="{{ isLighting }}"
+                        hint-placeholder-val="{{ false }}"
+                      >
+                        <div>
+                          <!-- 活動流程 -->
+                          <div class="sub-section-header">
+                            <span class="sub-section-bar"></span
+                            ><span class="sub-section-title">活動流程</span>
+                          </div>
+                          <div class="info-box">
+                            <div
+                              style="
+                                font-weight: 700;
+                                color: #b23b34;
+                                font-size: 15px;
+                                margin-bottom: 6px;
+                              "
+                            >
+                              1/31（六）
+                            </div>
+                            <div
+                              style="
+                                font-size: 14.5px;
+                                color: #5c5142;
+                                line-height: 1.9;
+                                margin-bottom: 14px;
+                              "
+                            >
+                              09:00–12:30　金闕殿玉皇大帝安座大典<br />13:00–17:00　財神燈、藥師燈點燈儀式
+                            </div>
+                            <div
+                              style="
+                                font-weight: 700;
+                                color: #b23b34;
+                                font-size: 15px;
+                                margin-bottom: 6px;
+                              "
+                            >
+                              2/1（日）
+                            </div>
+                            <div
+                              style="
+                                font-size: 14.5px;
+                                color: #5c5142;
+                                line-height: 1.9;
+                              "
+                            >
+                              09:00–11:30　上午場祭解、大小平安燈點燈儀式<br />13:00–17:00　下午場祭解、大小平安燈儀式
+                            </div>
+                          </div>
+
+                          <!-- 服務項目＆費用 -->
+                          <div class="sub-section-header">
+                            <span class="sub-section-bar"></span
+                            ><span class="sub-section-title"
+                              >服務項目 & 費用</span
+                            >
+                          </div>
+                          <div
+                            style="
+                              border: 1px solid #ecdfc2;
+                              border-radius: 16px;
+                              background: #fffcf4;
+                              padding: 4px 18px;
+                            "
+                          >
+                            <div
+                              style="
+                                display: flex;
+                                justify-content: space-between;
+                                padding: 12px 0;
+                                border-bottom: 1px solid #f0e7d3;
+                              "
+                            >
+                              <span style="font-size: 15px; color: #3b3128"
+                                >藥師琉璃燈</span
+                              ><span style="font-weight: 700; color: #b23b34"
+                                >$15,000</span
+                              >
+                            </div>
+                            <div
+                              style="
+                                display: flex;
+                                justify-content: space-between;
+                                padding: 12px 0;
+                                border-bottom: 1px solid #f0e7d3;
+                              "
+                            >
+                              <span style="font-size: 15px; color: #3b3128"
+                                >大財神燈</span
+                              ><span style="font-weight: 700; color: #b23b34"
+                                >$15,000</span
+                              >
+                            </div>
+                            <div
+                              style="
+                                display: flex;
+                                justify-content: space-between;
+                                padding: 12px 0;
+                                border-bottom: 1px solid #f0e7d3;
+                              "
+                            >
+                              <span style="font-size: 15px; color: #3b3128"
+                                >小財神燈</span
+                              ><span style="font-weight: 700; color: #b23b34"
+                                >$1,800</span
+                              >
+                            </div>
+                            <div
+                              style="
+                                display: flex;
+                                justify-content: space-between;
+                                padding: 12px 0;
+                                border-bottom: 1px solid #f0e7d3;
+                              "
+                            >
+                              <span style="font-size: 15px; color: #3b3128"
+                                >大平安燈</span
+                              ><span style="font-weight: 700; color: #b23b34"
+                                >$12,000</span
+                              >
+                            </div>
+                            <div
+                              style="
+                                display: flex;
+                                justify-content: space-between;
+                                padding: 12px 0;
+                                border-bottom: 1px solid #f0e7d3;
+                              "
+                            >
+                              <span style="font-size: 15px; color: #3b3128"
+                                >小平安燈</span
+                              ><span style="font-weight: 700; color: #b23b34"
+                                >$1,800</span
+                              >
+                            </div>
+                            <div
+                              style="
+                                display: flex;
+                                justify-content: space-between;
+                                padding: 12px 0;
+                              "
+                            >
+                              <span style="font-size: 15px; color: #3b3128"
+                                >祭解</span
+                              ><span style="font-weight: 700; color: #b23b34"
+                                >$1,000</span
+                              >
+                            </div>
+                          </div>
+                          <div
+                            style="
+                              margin-top: 10px;
+                              padding: 13px 16px;
+                              border-radius: 12px;
+                              background: #fbf4e4;
+                              border: 1px solid #eee1c4;
+                              font-size: 13.5px;
+                              color: #9a8564;
+                              line-height: 1.7;
+                            "
+                          >
+                            💛
+                            報名大、小平安燈、藥師琉璃燈已內含祭解，不需另外再勾選祭解項目。
+                          </div>
+
+                          <!-- 太歲資訊 -->
+                          <div class="sub-section-header">
+                            <span class="sub-section-bar"></span
+                            ><span class="sub-section-title"
+                              >2026 丙午年太歲</span
+                            >
+                          </div>
+                          <div
+                            style="
+                              display: flex;
+                              gap: 10px;
+                              margin-bottom: 14px;
+                            "
+                          >
+                            <div
+                              style="
+                                flex: 1;
+                                border: 1px solid #ecdfc2;
+                                border-radius: 14px;
+                                background: #fffcf4;
+                                padding: 14px;
+                                text-align: center;
+                              "
+                            >
+                              <div style="font-size: 12px; color: #9a8c72">
+                                太歲生肖
+                              </div>
+                              <div
+                                style="
+                                  font-family: &quot;Noto Serif TC&quot;, serif;
+                                  font-weight: 700;
+                                  font-size: 18px;
+                                  color: #3b3128;
+                                  margin-top: 3px;
+                                "
+                              >
+                                馬
+                              </div>
+                            </div>
+                            <div
+                              style="
+                                flex: 1;
+                                border: 1px solid #ecdfc2;
+                                border-radius: 14px;
+                                background: #fffcf4;
+                                padding: 14px;
+                                text-align: center;
+                              "
+                            >
+                              <div style="font-size: 12px; color: #9a8c72">
+                                正沖
+                              </div>
+                              <div
+                                style="
+                                  font-family: &quot;Noto Serif TC&quot;, serif;
+                                  font-weight: 700;
+                                  font-size: 18px;
+                                  color: #b23b34;
+                                  margin-top: 3px;
+                                "
+                              >
+                                馬
+                              </div>
+                            </div>
+                            <div
+                              style="
+                                flex: 1.4;
+                                border: 1px solid #ecdfc2;
+                                border-radius: 14px;
+                                background: #fffcf4;
+                                padding: 14px;
+                                text-align: center;
+                              "
+                            >
+                              <div style="font-size: 12px; color: #9a8c72">
+                                偏沖
+                              </div>
+                              <div
+                                style="
+                                  font-family: &quot;Noto Serif TC&quot;, serif;
+                                  font-weight: 700;
+                                  font-size: 18px;
+                                  color: #c6871b;
+                                  margin-top: 3px;
+                                "
+                              >
+                                鼠・牛・兔
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            style="
+                              border: 1px solid #e3d2ae;
+                              border-radius: 16px;
+                              background: linear-gradient(
+                                180deg,
+                                #fbf3df,
+                                #fcf7ec
+                              );
+                              padding: 18px;
+                            "
+                          >
+                            <div
+                              style="
+                                font-family: &quot;Noto Serif TC&quot;, serif;
+                                font-weight: 700;
+                                font-size: 15px;
+                                color: #a8823c;
+                                margin-bottom: 10px;
+                              "
+                            >
+                              三公主開示・丙午年太歲籤詩
+                            </div>
+                            <div
+                              style="
+                                font-family: &quot;Noto Serif TC&quot;, serif;
+                                font-size: 16px;
+                                color: #5c4a32;
+                                line-height: 2.1;
+                                letter-spacing: 1px;
+                              "
+                            >
+                              馬坐太歲又犯刑，午午自刑難斷論，<br />變動難止處事慎，機運危機雙併行。<br />牛害太歲忌小人，凡事三思離是非。<br />鼠沖太歲體欠安，安然原地少變遷。<br />兔破太歲損財利，財守於內莫投機。
+                            </div>
+                          </div>
+                          <div
+                            style="
+                              margin-top: 12px;
+                              font-size: 14.5px;
+                              color: #5c5142;
+                              line-height: 1.95;
+                            "
+                          >
+                            <p style="margin: 0 0 12px">
+                              <b style="color: #b23b34">⭐ 正沖肖馬</b
+                              >　今年坐太歲又犯刑太歲，午火遇午火為自刑，易情緒耗心、心性不穩、易怒氣損財。然亦是變動極大之一年，機運與危機並存，危中有機、機中藏危，走對方向可突破，走錯方向易受挫，凡事需謹慎而行。
+                            </p>
+                            <p style="margin: 0 0 12px">
+                              <b style="color: #c6871b">⭐ 偏沖肖牛</b
+                              >　需謹防小人與新認識的人，亦防止爛桃花纏身。
+                            </p>
+                            <p style="margin: 0 0 12px">
+                              <b style="color: #c6871b">⭐ 偏沖肖鼠</b
+                              >　身體有礙，需防過於勞累與疲倦。莫要遠行、少變動，工作安中求穩定，莫要多思、多慮、多變遷。
+                            </p>
+                            <p style="margin: 0 0 4px">
+                              <b style="color: #c6871b">⭐ 偏沖肖兔</b
+                              >　今年財星有損，投機財利易損傷。莫與人銀財往來與商借，錢財宜入袋為安。
+                            </p>
+                          </div>
+                          <div
+                            style="
+                              margin-top: 12px;
+                              padding: 13px 16px;
+                              border-radius: 12px;
+                              background: #fbf4e4;
+                              border: 1px solid #eee1c4;
+                              font-size: 13.5px;
+                              color: #9a8564;
+                              line-height: 1.7;
+                            "
+                          >
+                            💛 信眾可依三公主丙午年籤詩提醒，參考選擇點燈項目。
+                          </div>
+
+                          <!-- 報名注意事項 -->
+                          <div class="sub-section-header">
+                            <span class="sub-section-bar"></span
+                            ><span class="sub-section-title">報名注意事項</span>
+                          </div>
+                          <div
+                            style="
+                              border: 1px solid #ecdfc2;
+                              border-radius: 16px;
+                              background: #fffcf4;
+                              padding: 16px 18px;
+                              display: flex;
+                              flex-direction: column;
+                              gap: 12px;
+                            "
+                          >
+                            <div
+                              style="
+                                display: flex;
+                                gap: 10px;
+                                font-size: 14px;
+                                color: #5c5142;
+                                line-height: 1.8;
+                              "
+                            >
+                              <span style="color: #b23b34; flex: none">△</span
+                              ><span
+                                >以公司名義報名財神燈者，請在姓名處寫上公司名及公司負責人即可。</span
+                              >
+                            </div>
+                            <div
+                              style="
+                                display: flex;
+                                gap: 10px;
+                                font-size: 14px;
+                                color: #5c5142;
+                                line-height: 1.8;
+                              "
+                            >
+                              <span style="color: #b23b34; flex: none">△</span
+                              ><span
+                                >報名大、小平安燈，三公主會依信眾提供之生肖八字提醒來年運勢：1.
+                                可本人親自到場聆聽 2.
+                                未能到場者由筆生代為寫下明年注意事項轉交。</span
+                              >
+                            </div>
+                            <div
+                              style="
+                                display: flex;
+                                gap: 10px;
+                                font-size: 14px;
+                                color: #5c5142;
+                                line-height: 1.8;
+                              "
+                            >
+                              <span style="color: #b23b34; flex: none">△</span
+                              ><span
+                                >有鑑於往年個別發問回覆以致流程延誤，三公主特別指示無法個別發問回覆，僅提供聆聽記錄；若有疑惑可另外預約時間回來問事。</span
+                              >
+                            </div>
+                            <div
+                              style="
+                                display: flex;
+                                gap: 10px;
+                                font-size: 14px;
+                                color: #5c5142;
+                                line-height: 1.8;
+                              "
+                            >
+                              <span style="color: #b23b34; flex: none">△</span
+                              ><span
+                                >報名「大平安燈」及「藥師燈」者，請準備一套長袖衣褲附上姓名名條，於
+                                1/20 前送至境心殿。</span
+                              >
+                            </div>
+                            <div
+                              style="
+                                display: flex;
+                                gap: 10px;
+                                font-size: 14px;
+                                color: #5c5142;
+                                line-height: 1.8;
+                              "
+                            >
+                              <span style="color: #b23b34; flex: none">△</span
+                              ><span
+                                >由於活動名額有限，境心殿將依匯款成功順序確認是否保留報名方案。</span
+                              >
+                            </div>
+                            <div
+                              style="
+                                display: flex;
+                                gap: 10px;
+                                font-size: 14px;
+                                color: #5c5142;
+                                line-height: 1.8;
+                              "
+                            >
+                              <span style="color: #b23b34; flex: none">△</span
+                              ><span
+                                >本活動疏文由境心殿依信眾填寫之報名資料下載列印，請詳細檢查填寫是否正確無誤。</span
+                              >
+                            </div>
+                            <div
+                              style="
+                                display: flex;
+                                gap: 10px;
+                                font-size: 14px;
+                                color: #5c5142;
+                                line-height: 1.8;
+                              "
+                            >
+                              <span style="color: #b23b34; flex: none">△</span
+                              ><span
+                                >對出生時辰有疑慮者，可本人到場在疏文上加蓋左手手印，無法到場者可帶私章。</span
+                              >
+                            </div>
+                          </div>
+
+                          <!-- 聯絡我們 -->
+                          <div class="sub-section-header">
+                            <span class="sub-section-bar"></span
+                            ><span class="sub-section-title">與我們聯繫</span>
+                          </div>
+                          <div
+                            style="
+                              border: 1px solid #ecdfc2;
+                              border-radius: 16px;
+                              background: #fffcf4;
+                              padding: 4px 18px;
+                              margin-bottom: 6px;
+                            "
+                          >
+                            <div
+                              style="
+                                display: flex;
+                                align-items: center;
+                                gap: 12px;
+                                padding: 13px 0;
+                                border-bottom: 1px solid #f0e7d3;
+                              "
+                            >
+                              <span style="width: 26px; text-align: center"
+                                >📘</span
+                              >
+                              <div>
+                                <div style="font-size: 12px; color: #9a8c72">
+                                  Facebook
+                                </div>
+                                <div
+                                  style="
+                                    font-size: 15px;
+                                    color: #3b3128;
+                                    font-weight: 600;
+                                  "
+                                >
+                                  境心殿無極道院
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              style="
+                                display: flex;
+                                align-items: center;
+                                gap: 12px;
+                                padding: 13px 0;
+                                border-bottom: 1px solid #f0e7d3;
+                              "
+                            >
+                              <span style="width: 26px; text-align: center"
+                                >💬</span
+                              >
+                              <div>
+                                <div style="font-size: 12px; color: #9a8c72">
+                                  LINE
+                                </div>
+                                <div
+                                  style="
+                                    font-size: 15px;
+                                    color: #3b3128;
+                                    font-weight: 600;
+                                  "
+                                >
+                                  境心殿無極道院
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              style="
+                                display: flex;
+                                align-items: center;
+                                gap: 12px;
+                                padding: 13px 0;
+                                border-bottom: 1px solid #f0e7d3;
+                              "
+                            >
+                              <span style="width: 26px; text-align: center"
+                                >📞</span
+                              >
+                              <div>
+                                <div style="font-size: 12px; color: #9a8c72">
+                                  曾師兄電話（由專人服務）
+                                </div>
+                                <div
+                                  style="
+                                    font-size: 15px;
+                                    color: #3b3128;
+                                    font-weight: 600;
+                                  "
+                                >
+                                  0963-731-118
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              style="
+                                display: flex;
+                                align-items: center;
+                                gap: 12px;
+                                padding: 13px 0;
+                              "
+                            >
+                              <span style="width: 26px; text-align: center"
+                                >📍</span
+                              >
+                              <div>
+                                <div style="font-size: 12px; color: #9a8c72">
+                                  地址
+                                </div>
+                                <div
+                                  style="
+                                    font-size: 15px;
+                                    color: #3b3128;
+                                    font-weight: 600;
+                                  "
+                                >
+                                  桃園市觀音區文化路坑尾段376巷111弄6號
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </sc-if>
+                    </div>
+                  </sc-if>
+
+                  <!-- BASIC -->
+                  <sc-if
+                    value="{{ isBasic }}"
+                    hint-placeholder-val="{{ false }}"
+                  >
+                    <div style="animation: fadeUp 0.4s ease both">
+                      <div
+                        style="
+                          font-family: &quot;Noto Serif TC&quot;, serif;
+                          font-weight: 700;
+                          font-size: 21px;
+                          color: #3b3128;
+                        "
+                      >
+                        基本資料
+                      </div>
+                      <div
+                        style="
+                          font-size: 13.5px;
+                          color: #9a8c72;
+                          margin-top: 6px;
+                          margin-bottom: 20px;
+                        "
+                      >
+                        請填寫報名人（主要聯絡人）資料
+                      </div>
+                      <div style="margin-bottom: 18px">
+                        <label class="form-label"
+                          >姓名 <span style="color: #b23b34">*</span></label
+                        ><input
+                          value="{{ fam.contact }}"
+                          oninput="{{ onContact }}"
+                          placeholder="請輸入報名人姓名"
+                          class="form-input"
+                        />
+                      </div>
+                      <div style="margin-bottom: 18px">
+                        <label class="form-label-mb9">性別</label>
+                        <div style="display: flex; gap: 10px">
+                          <button onclick="{{ gMale }}" style="{{ gMaleSty }}">
+                            乾（男）</button
+                          ><button
+                            onclick="{{ gFemale }}"
+                            style="{{ gFemaleSty }}"
+                          >
+                            坤（女）
+                          </button>
+                        </div>
+                      </div>
+                      <div style="margin-bottom: 18px">
+                        <label class="form-label"
+                          >聯絡電話 <span style="color: #b23b34">*</span></label
+                        ><input
+                          type="tel"
+                          value="{{ fam.phone }}"
+                          oninput="{{ onPhone }}"
+                          placeholder="0912-345-678"
+                          class="form-input"
+                        />
+                      </div>
+                      <div style="margin-bottom: 4px">
+                        <label class="form-label">聯絡地址</label
+                        ><input
+                          value="{{ fam.address }}"
+                          oninput="{{ onAddress }}"
+                          placeholder="例：桃園市觀音區文化路坑尾段376巷111弄6號"
+                          class="form-input"
+                        />
+                      </div>
+                    </div>
+                  </sc-if>
+
+                  <!-- BIRTH -->
+                  <sc-if
+                    value="{{ isBirth }}"
+                    hint-placeholder-val="{{ false }}"
+                  >
+                    <div style="animation: fadeUp 0.4s ease both">
+                      <div
+                        style="
+                          font-family: &quot;Noto Serif TC&quot;, serif;
+                          font-weight: 700;
+                          font-size: 21px;
+                          color: #3b3128;
+                        "
+                      >
+                        生辰資料
+                      </div>
+                      <div
+                        style="
+                          font-size: 13.5px;
+                          color: #9a8c72;
+                          margin-top: 6px;
+                          margin-bottom: 20px;
+                        "
+                      >
+                        此生日將填寫於疏文紙上，請確認正確
+                      </div>
+                      <label class="form-label-mb9">生日類型</label>
+                      <div
+                        style="display: flex; gap: 10px; margin-bottom: 20px"
+                      >
+                        <button onclick="{{ cLunar }}" style="{{ cLunarSty }}">
+                          農曆
+                        </button>
+                        <button onclick="{{ cSolar }}" style="{{ cSolarSty }}">
+                          國曆
+                        </button>
+                      </div>
+                      <label class="form-label-mb9"
+                        >出生年月日 <span style="color: #b23b34">*</span></label
+                      >
+                      <div
+                        style="display: flex; gap: 10px; margin-bottom: 20px"
+                      >
+                        <select
+                          value="{{ mem.year }}"
+                          onchange="{{ onYear }}"
+                          style="
+                            flex: 1.4;
+                            padding: 15px 34px 15px 14px;
+                            font-size: 16px;
+                            border-radius: 12px;
+                            border: 1.5px solid #e6dac2;
+                            background-color: #fffcf4;
+                            color: #3b3128;
+                            outline: none;
+                          "
+                        >
+                          <option value="">年</option>
+                          <sc-for
+                            list="{{ years }}"
+                            as="y"
+                            hint-placeholder-count="4"
+                            ><option value="{{ y.v }}">
+                              {{ y.label }}
+                            </option></sc-for
+                          >
+                        </select>
+                        <select
+                          value="{{ mem.month }}"
+                          onchange="{{ onMonth }}"
+                          style="
+                            flex: 1;
+                            padding: 15px 34px 15px 14px;
+                            font-size: 16px;
+                            border-radius: 12px;
+                            border: 1.5px solid #e6dac2;
+                            background-color: #fffcf4;
+                            color: #3b3128;
+                            outline: none;
+                          "
+                        >
+                          <option value="">月</option>
+                          <sc-for
+                            list="{{ months }}"
+                            as="m"
+                            hint-placeholder-count="4"
+                            ><option value="{{ m.v }}">
+                              {{ m.label }}
+                            </option></sc-for
+                          >
+                        </select>
+                        <select
+                          value="{{ mem.day }}"
+                          onchange="{{ onDay }}"
+                          style="
+                            flex: 1;
+                            padding: 15px 34px 15px 14px;
+                            font-size: 16px;
+                            border-radius: 12px;
+                            border: 1.5px solid #e6dac2;
+                            background-color: #fffcf4;
+                            color: #3b3128;
+                            outline: none;
+                          "
+                        >
+                          <option value="">日</option>
+                          <sc-for
+                            list="{{ days }}"
+                            as="d"
+                            hint-placeholder-count="4"
+                            ><option value="{{ d.v }}">
+                              {{ d.label }}
+                            </option></sc-for
+                          >
+                        </select>
+                      </div>
+                      <label class="form-label-mb9">出生時辰</label>
+                      <select
+                        value="{{ mem.shichen }}"
+                        onchange="{{ onShichen }}"
+                        style="
+                          width: 100%;
+                          padding: 15px 34px 15px 14px;
+                          font-size: 16px;
+                          border-radius: 12px;
+                          border: 1.5px solid #e6dac2;
+                          background-color: #fffcf4;
+                          color: #3b3128;
+                          outline: none;
+                        "
+                      >
+                        <option value="">請選擇時辰</option>
+                        <sc-for
+                          list="{{ shichens }}"
+                          as="s"
+                          hint-placeholder-count="4"
+                          ><option value="{{ s.v }}">
+                            {{ s.label }}
+                          </option></sc-for
+                        >
+                      </select>
+                      <div
+                        style="
+                          margin-top: 16px;
+                          padding: 13px 16px;
+                          border-radius: 12px;
+                          background: #fbf4e4;
+                          border: 1px solid #eee1c4;
+                          font-size: 13px;
+                          color: #9a8564;
+                          line-height: 1.7;
+                        "
+                      >
+                        📿 若不確定時辰可選「不知道時辰」，道院將以吉時處理。
+                      </div>
+                    </div>
+                  </sc-if>
+
+                  <!-- ITEMS -->
+                  <sc-if
+                    value="{{ isItems }}"
+                    hint-placeholder-val="{{ false }}"
+                  >
+                    <div style="animation: fadeUp 0.4s ease both">
+                      <div
+                        style="
+                          font-family: &quot;Noto Serif TC&quot;, serif;
+                          font-weight: 700;
+                          font-size: 21px;
+                          color: #3b3128;
+                        "
+                      >
+                        {{ itemsTitle }}
+                      </div>
+                      <div
+                        style="
+                          font-size: 13.5px;
+                          color: #9a8c72;
+                          margin-top: 6px;
+                          margin-bottom: 18px;
+                        "
+                      >
+                        {{ itemsNote }}
+                      </div>
+                      <sc-for
+                        list="{{ groups }}"
+                        as="g"
+                        hint-placeholder-count="1"
+                      >
+                        <div style="margin-bottom: 18px">
+                          <sc-if
+                            value="{{ g.hasTitle }}"
+                            hint-placeholder-val="{{ false }}"
+                          >
+                            <div
+                              style="
+                                display: flex;
+                                align-items: center;
+                                gap: 8px;
+                                margin-bottom: 10px;
+                              "
+                            >
+                              <span
+                                style="
+                                  width: 4px;
+                                  height: 16px;
+                                  border-radius: 2px;
+                                  background: #c6a15b;
+                                "
+                              ></span
+                              ><span
+                                style="
+                                  font-family: &quot;Noto Serif TC&quot;, serif;
+                                  font-weight: 700;
+                                  font-size: 16px;
+                                  color: #7a5c3e;
+                                "
+                                >{{ g.title }}</span
+                              ><span style="font-size: 12px; color: #b3a88f"
+                                >{{ g.note }}</span
+                              >
+                            </div>
+                          </sc-if>
+                          <div
+                            style="
+                              display: flex;
+                              flex-direction: column;
+                              gap: 11px;
+                            "
+                          >
+                            <sc-for
+                              list="{{ g.items }}"
+                              as="it"
+                              hint-placeholder-count="3"
+                            >
+                              <div style="{{ it.cardStyle }}">
+                                <div
+                                  onclick="{{ it.onToggle }}"
+                                  style="
+                                    display: flex;
+                                    align-items: flex-start;
+                                    gap: 12px;
+                                    cursor: pointer;
+                                  "
+                                >
+                                  <div style="{{ it.checkSty }}">
+                                    {{ it.checkMark }}
+                                  </div>
+                                  <div style="flex: 1">
+                                    <div
+                                      style="
+                                        display: flex;
+                                        align-items: baseline;
+                                        justify-content: space-between;
+                                        gap: 8px;
+                                      "
+                                    >
+                                      <span
+                                        style="
+                                          font-family:
+                                            &quot;Noto Serif TC&quot;, serif;
+                                          font-weight: 700;
+                                          font-size: 17px;
+                                          color: #3b3128;
+                                        "
+                                        >{{ it.name }}</span
+                                      ><span
+                                        style="
+                                          font-size: 16px;
+                                          font-weight: 700;
+                                          color: #b23b34;
+                                        "
+                                        >{{ it.priceLabel }}</span
+                                      >
+                                    </div>
+                                    <div
+                                      style="
+                                        font-size: 13px;
+                                        color: #8a7d66;
+                                        margin-top: 3px;
+                                        line-height: 1.5;
+                                      "
+                                    >
+                                      {{ it.desc }}
+                                    </div>
+                                    <div
+                                      style="{{ it.remainStyle }}; margin-top:6px;"
+                                    >
+                                      {{ it.remainLabel }}
+                                    </div>
+                                  </div>
+                                </div>
+                                <sc-if
+                                  value="{{ it.showStepper }}"
+                                  hint-placeholder-val="{{ false }}"
+                                >
+                                  <div
+                                    style="
+                                      display: flex;
+                                      align-items: center;
+                                      justify-content: flex-end;
+                                      gap: 14px;
+                                      padding-top: 11px;
+                                      border-top: 1px solid #f0e4ce;
+                                    "
+                                  >
+                                    <span
+                                      style="font-size: 13px; color: #9a8c72"
+                                      >數量</span
+                                    >
+                                    <button
+                                      onclick="{{ it.onDec }}"
+                                      style="
+                                        width: 36px;
+                                        height: 36px;
+                                        border-radius: 50%;
+                                        border: 1.5px solid #d8c79e;
+                                        background: #fff;
+                                        font-size: 20px;
+                                        color: #7a5c3e;
+                                        cursor: pointer;
+                                        line-height: 1;
+                                      "
+                                    >
+                                      −
+                                    </button>
+                                    <span
+                                      style="
+                                        min-width: 24px;
+                                        text-align: center;
+                                        font-size: 18px;
+                                        font-weight: 700;
+                                        color: #3b3128;
+                                      "
+                                      >{{ it.qtyLabel }}</span
+                                    >
+                                    <button
+                                      onclick="{{ it.onInc }}"
+                                      style="
+                                        width: 36px;
+                                        height: 36px;
+                                        border-radius: 50%;
+                                        border: 1.5px solid #c6a15b;
+                                        background: #c6a15b;
+                                        font-size: 20px;
+                                        color: #fff9ed;
+                                        cursor: pointer;
+                                        line-height: 1;
+                                      "
+                                    >
+                                      +
+                                    </button>
+                                  </div>
+                                </sc-if>
+                                <sc-if
+                                  value="{{ it.isCustom }}"
+                                  hint-placeholder-val="{{ false }}"
+                                >
+                                  <div
+                                    style="
+                                      padding-top: 11px;
+                                      border-top: 1px solid #f0e4ce;
+                                    "
+                                  >
+                                    <div
+                                      style="
+                                        display: flex;
+                                        align-items: center;
+                                        gap: 10px;
+                                      "
+                                    >
+                                      <span
+                                        style="
+                                          font-size: 18px;
+                                          font-weight: 700;
+                                          color: #7a5c3e;
+                                        "
+                                        >$</span
+                                      ><input
+                                        type="tel"
+                                        value="{{ suixi }}"
+                                        oninput="{{ onSuixi }}"
+                                        placeholder="輸入隨喜金額"
+                                        style="
+                                          flex: 1;
+                                          padding: 12px 14px;
+                                          font-size: 16px;
+                                          border-radius: 10px;
+                                          border: 1.5px solid #e6dac2;
+                                          background: #fff;
+                                          color: #3b3128;
+                                          outline: none;
+                                        "
+                                      />
+                                    </div>
+                                  </div>
+                                </sc-if>
+                              </div>
+                            </sc-for>
+                          </div>
+                        </div>
+                      </sc-for>
+
+                      <sc-if
+                        value="{{ isLighting }}"
+                        hint-placeholder-val="{{ false }}"
+                      >
+                        <div>
+                          <div
+                            style="
+                              height: 1px;
+                              background: #e6dac2;
+                              margin: 8px 0 20px;
+                            "
+                          ></div>
+                          <div class="flow-title">
+                            欲親自到場時間調查
+                            <span style="color: #a8823c; font-size: 14px"
+                              >｜平安燈｜</span
+                            >
+                          </div>
+                          <div
+                            style="
+                              display: flex;
+                              flex-direction: column;
+                              gap: 9px;
+                              margin: 12px 0 22px;
+                            "
+                          >
+                            <sc-for
+                              list="{{ attendPeaceVM }}"
+                              as="o"
+                              hint-placeholder-count="3"
+                              ><div
+                                onclick="{{ o.onSelect }}"
+                                style="{{ o.rowStyle }}"
+                              >
+                                <span style="{{ o.dotStyle }}"
+                                  ><span style="{{ o.dotInner }}"></span></span
+                                ><span style="font-size: 15px; color: #3b3128"
+                                  >{{ o.label }}</span
+                                >
+                              </div></sc-for
+                            >
+                          </div>
+                          <div class="flow-title">
+                            欲親自到場時間調查
+                            <span style="color: #a8823c; font-size: 14px"
+                              >｜財神燈／藥師燈｜</span
+                            >
+                          </div>
+                          <div
+                            style="
+                              display: flex;
+                              flex-direction: column;
+                              gap: 9px;
+                              margin: 12px 0 22px;
+                            "
+                          >
+                            <sc-for
+                              list="{{ attendWealthVM }}"
+                              as="o"
+                              hint-placeholder-count="3"
+                              ><div
+                                onclick="{{ o.onSelect }}"
+                                style="{{ o.rowStyle }}"
+                              >
+                                <span style="{{ o.dotStyle }}"
+                                  ><span style="{{ o.dotInner }}"></span></span
+                                ><span style="font-size: 15px; color: #3b3128"
+                                  >{{ o.label }}</span
+                                >
+                              </div></sc-for
+                            >
+                          </div>
+                          <div
+                            style="
+                              height: 1px;
+                              background: #e6dac2;
+                              margin: 4px 0 20px;
+                            "
+                          ></div>
+                          <div style="margin-bottom: 8px">
+                            <label
+                              style="
+                                display: block;
+                                font-size: 15px;
+                                color: #7a5c3e;
+                                font-weight: 600;
+                                margin-bottom: 3px;
+                              "
+                              >主要家庭聯絡人
+                              <span style="color: #b23b34">*</span></label
+                            >
+                            <div
+                              style="
+                                font-size: 12.5px;
+                                color: #9a8c72;
+                                margin-bottom: 8px;
+                              "
+                            >
+                              代家人、親友報名者請填同一位聯絡人，以利後續聯繫
+                            </div>
+                            <input
+                              value="{{ famContact }}"
+                              oninput="{{ onFamContact }}"
+                              placeholder="請輸入主要家庭聯絡人姓名"
+                              class="form-input"
+                            />
+                          </div>
+                          <div style="margin-bottom: 4px; margin-top: 16px">
+                            <label class="form-label"
+                              >主要家庭聯絡人電話
+                              <span style="color: #b23b34">*</span></label
+                            ><input
+                              type="tel"
+                              value="{{ famPhone }}"
+                              oninput="{{ onFamPhone }}"
+                              placeholder="0912-345-678"
+                              class="form-input"
+                            />
+                          </div>
+                        </div>
+                      </sc-if>
+                    </div>
+                  </sc-if>
+
+                  <!-- PAY -->
+                  <sc-if value="{{ isPay }}" hint-placeholder-val="{{ false }}">
+                    <div style="animation: fadeUp 0.4s ease both">
+                      <div
+                        style="
+                          font-family: &quot;Noto Serif TC&quot;, serif;
+                          font-weight: 700;
+                          font-size: 21px;
+                          color: #3b3128;
+                        "
+                      >
+                        確認與匯款
+                      </div>
+                      <div
+                        style="
+                          font-size: 13.5px;
+                          color: #9a8c72;
+                          margin-top: 6px;
+                          margin-bottom: 18px;
+                        "
+                      >
+                        請確認報名項目並完成匯款
+                      </div>
+                      <div
+                        style="
+                          border: 1px solid #ecdfc2;
+                          border-radius: 16px;
+                          background: #fffcf4;
+                          overflow: hidden;
+                          margin-bottom: 18px;
+                        "
+                      >
+                        <div
+                          style="
+                            padding: 13px 16px;
+                            background: #fbf4e4;
+                            font-size: 14px;
+                            font-weight: 700;
+                            color: #7a5c3e;
+                          "
+                        >
+                          報名明細
+                        </div>
+                        <div style="padding: 4px 16px">
+                          <sc-for
+                            list="{{ selList }}"
+                            as="s"
+                            hint-placeholder-count="2"
+                          >
+                            <div
+                              style="
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                padding: 12px 0;
+                                border-bottom: 1px solid #f0e7d3;
+                              "
+                            >
+                              <span style="font-size: 15px; color: #3b3128"
+                                >{{ s.name }}
+                                <span style="color: #9a8c72; font-size: 13px"
+                                  >{{ s.qtyLabel }}</span
+                                ></span
+                              ><span
+                                style="
+                                  font-size: 15px;
+                                  font-weight: 700;
+                                  color: #3b3128;
+                                "
+                                >{{ s.subLabel }}</span
+                              >
+                            </div>
+                          </sc-for>
+                          <div
+                            style="
+                              display: flex;
+                              justify-content: space-between;
+                              align-items: center;
+                              padding: 15px 0;
+                            "
+                          >
+                            <span
+                              style="
+                                font-size: 16px;
+                                font-weight: 700;
+                                color: #3b3128;
+                              "
+                              >應繳總額</span
+                            ><span
+                              style="
+                                font-family: &quot;Noto Serif TC&quot;, serif;
+                                font-size: 24px;
+                                font-weight: 900;
+                                color: #b23b34;
+                              "
+                              >{{ totalLabel }}</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        style="
+                          border: 1px solid #ecdfc2;
+                          border-radius: 16px;
+                          background: #fffcf4;
+                          padding: 16px 18px;
+                          margin-bottom: 12px;
+                        "
+                      >
+                        <div
+                          style="
+                            font-size: 14px;
+                            font-weight: 700;
+                            color: #7a5c3e;
+                            margin-bottom: 12px;
+                          "
+                        >
+                          匯款帳號
+                        </div>
+                        <div
+                          style="
+                            display: flex;
+                            justify-content: space-between;
+                            padding: 7px 0;
+                            font-size: 14px;
+                            border-bottom: 1px solid #f5eddc;
+                          "
+                        >
+                          <span style="color: #9a8c72">匯款銀行</span
+                          ><span style="color: #3b3128; font-weight: 600"
+                            >{{ bank.bank }}</span
+                          >
+                        </div>
+                        <div
+                          style="
+                            display: flex;
+                            justify-content: space-between;
+                            padding: 7px 0;
+                            font-size: 14px;
+                            border-bottom: 1px solid #f5eddc;
+                          "
+                        >
+                          <span style="color: #9a8c72">匯款分行</span
+                          ><span style="color: #3b3128; font-weight: 600"
+                            >{{ bank.branch }}</span
+                          >
+                        </div>
+                        <div
+                          style="
+                            display: flex;
+                            justify-content: space-between;
+                            padding: 7px 0;
+                            font-size: 14px;
+                            border-bottom: 1px solid #f5eddc;
+                          "
+                        >
+                          <span style="color: #9a8c72">匯款帳號</span
+                          ><span
+                            style="
+                              color: #3b3128;
+                              font-weight: 700;
+                              letter-spacing: 1px;
+                            "
+                            >{{ bank.acct }}</span
+                          >
+                        </div>
+                        <div
+                          style="
+                            display: flex;
+                            justify-content: space-between;
+                            padding: 7px 0;
+                            font-size: 14px;
+                          "
+                        >
+                          <span style="color: #9a8c72">匯款戶名</span
+                          ><span style="color: #3b3128; font-weight: 600"
+                            >{{ bank.name }}</span
+                          >
+                        </div>
+                      </div>
+                      <div
+                        style="
+                          padding: 13px 16px;
+                          border-radius: 12px;
+                          background: #fbf4e4;
+                          border: 1px solid #eee1c4;
+                          font-size: 13px;
+                          color: #9a8564;
+                          line-height: 1.7;
+                          margin-bottom: 18px;
+                        "
+                      >
+                        📌 {{ bank.note }}
+                      </div>
+                      <label class="form-label"
+                        >轉帳後五碼 <span style="color: #b23b34">*</span></label
+                      >
+                      <input
+                        type="tel"
+                        maxlength="5"
+                        value="{{ last5 }}"
+                        oninput="{{ onLast5 }}"
+                        placeholder="例：12345"
+                        style="
+                          width: 100%;
+                          padding: 15px 16px;
+                          font-size: 19px;
+                          letter-spacing: 6px;
+                          text-align: center;
+                          border-radius: 12px;
+                          border: 1.5px solid #e6dac2;
+                          background: #fffcf4;
+                          color: #3b3128;
+                          outline: none;
+                        "
+                      />
+                      <div
+                        style="
+                          margin-top: 12px;
+                          padding: 13px 16px;
+                          border-radius: 12px;
+                          background: #fbf4e4;
+                          border: 1px solid #eee1c4;
+                          font-size: 13px;
+                          color: #9a8564;
+                          line-height: 1.7;
+                        "
+                      >
+                        💡
+                        請於報名後三日內完成匯款並回填後五碼，道院將人工核對後開立收據。
+                      </div>
+                    </div>
+                  </sc-if>
+
+                  <!-- DONE -->
+                  <sc-if
+                    value="{{ isDone }}"
+                    hint-placeholder-val="{{ false }}"
+                  >
+                    <div
+                      style="
+                        text-align: center;
+                        padding-top: 24px;
+                        animation: fadeUp 0.5s ease both;
+                      "
+                    >
+                      <div
+                        style="
+                          width: 96px;
+                          height: 96px;
+                          margin: 0 auto;
+                          border-radius: 50%;
+                          background: linear-gradient(145deg, #cbaa63, #b23b34);
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          font-size: 46px;
+                          color: #fff9ed;
+                          box-shadow: 0 12px 30px rgba(178, 59, 52, 0.28);
+                        "
+                      >
+                        ✓
+                      </div>
+                      <div
+                        style="
+                          font-family: &quot;Noto Serif TC&quot;, serif;
+                          font-weight: 900;
+                          font-size: 26px;
+                          color: #3b3128;
+                          margin-top: 22px;
+                        "
+                      >
+                        報名已送出
+                      </div>
+                      <div
+                        style="
+                          font-size: 15px;
+                          color: #8a7d66;
+                          margin-top: 8px;
+                          line-height: 1.7;
+                        "
+                      >
+                        感謝您的虔誠參與<br />道院將於核對匯款後為您開立收據
+                      </div>
+                      <div
+                        style="
+                          margin-top: 22px;
+                          border: 1px solid #ecdfc2;
+                          border-radius: 16px;
+                          background: #fffcf4;
+                          padding: 18px;
+                          text-align: left;
+                        "
+                      >
+                        <div
+                          style="
+                            display: flex;
+                            justify-content: space-between;
+                            padding: 8px 0;
+                            border-bottom: 1px solid #f0e7d3;
+                          "
+                        >
+                          <span style="color: #9a8c72; font-size: 14px"
+                            >收據編號</span
+                          ><span
+                            style="
+                              color: #3b3128;
+                              font-weight: 700;
+                              font-size: 15px;
+                            "
+                            >{{ receipt }}</span
+                          >
+                        </div>
+                        <div
+                          style="
+                            display: flex;
+                            justify-content: space-between;
+                            padding: 8px 0;
+                            border-bottom: 1px solid #f0e7d3;
+                          "
+                        >
+                          <span style="color: #9a8c72; font-size: 14px"
+                            >報名法會</span
+                          ><span
+                            style="
+                              color: #3b3128;
+                              font-weight: 600;
+                              font-size: 15px;
+                            "
+                            >{{ cerName }}</span
+                          >
+                        </div>
+                        <div
+                          style="
+                            display: flex;
+                            justify-content: space-between;
+                            padding: 8px 0;
+                            border-bottom: 1px solid #f0e7d3;
+                          "
+                        >
+                          <span style="color: #9a8c72; font-size: 14px"
+                            >報名人</span
+                          ><span
+                            style="
+                              color: #3b3128;
+                              font-weight: 600;
+                              font-size: 15px;
+                            "
+                            >{{ doneName }}</span
+                          >
+                        </div>
+                        <div
+                          style="
+                            display: flex;
+                            justify-content: space-between;
+                            padding: 8px 0;
+                          "
+                        >
+                          <span style="color: #9a8c72; font-size: 14px"
+                            >應繳總額</span
+                          ><span
+                            style="
+                              color: #b23b34;
+                              font-weight: 800;
+                              font-size: 17px;
+                            "
+                            >{{ totalLabel }}</span
+                          >
+                        </div>
+                      </div>
+                      <div
+                        style="
+                          margin-top: 16px;
+                          padding: 13px 16px;
+                          border-radius: 12px;
+                          background: #fbf4e4;
+                          border: 1px solid #eee1c4;
+                          font-size: 13px;
+                          color: #9a8564;
+                          line-height: 1.7;
+                        "
+                      >
+                        🪷
+                        書文將由道院統一製作，歷年報名紀錄將永久保存於您的家庭資料中。
+                      </div>
+                      <button
+                        onclick="{{ goHome }}"
+                        style="
+                          margin-top: 22px;
+                          width: 100%;
+                          padding: 16px;
+                          border: none;
+                          border-radius: 14px;
+                          background: #7a5c3e;
+                          color: #fff9ed;
+                          font-size: 17px;
+                          font-weight: 700;
+                          cursor: pointer;
+                        "
+                      >
+                        返回首頁
+                      </button>
+                    </div>
+                  </sc-if>
+                </div>
+
+                <!-- flow footer -->
+                <sc-if
+                  value="{{ showFooter }}"
+                  hint-placeholder-val="{{ false }}"
+                >
+                  <div
+                    style="
+                      position: sticky;
+                      bottom: 0;
+                      z-index: 10;
+                      background: rgba(246, 239, 225, 0.96);
+                      backdrop-filter: blur(12px);
+                      border-top: 1px solid #e6dac2;
+                      padding: 14px 18px
+                        calc(14px + env(safe-area-inset-bottom));
+                    "
+                  >
+                    <sc-if
+                      value="{{ showFooterTotal }}"
+                      hint-placeholder-val="{{ false }}"
+                    >
+                      <div
+                        style="
+                          display: flex;
+                          justify-content: space-between;
+                          align-items: center;
+                          margin-bottom: 11px;
+                        "
+                      >
+                        <span style="font-size: 14px; color: #7a5c3e"
+                          >合計
+                          <span style="color: #9a8c72"
+                            >{{ countLabel }}</span
+                          ></span
+                        ><span
+                          style="
+                            font-family: &quot;Noto Serif TC&quot;, serif;
+                            font-size: 22px;
+                            font-weight: 900;
+                            color: #b23b34;
+                          "
+                          >{{ totalLabel }}</span
+                        >
+                      </div>
+                    </sc-if>
+                    <button
+                      onclick="{{ onPrimary }}"
+                      style="{{ primaryStyle }}"
+                    >
+                      {{ primaryLabel }}
+                    </button>
+                  </div>
+                </sc-if>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- ===== CLOSED OVERLAY ===== -->
+          <sc-if value="{{ inClosed }}" hint-placeholder-val="{{ false }}">
+            <div
+              style="
+                position: fixed;
+                inset: 0;
+                z-index: 50;
+                display: flex;
+                justify-content: center;
+                background: rgba(37, 28, 20, 0.55);
+              "
+            >
+              <div
+                style="
+                  width: 100%;
+                  max-width: 480px;
+                  height: 100vh;
+                  background: #f6efe1;
+                  overflow-y: auto;
+                  display: flex;
+                  flex-direction: column;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    padding: 13px 16px;
+                    border-bottom: 1px solid #e6dac2;
+                  "
+                >
+                  <button
+                    onclick="{{ goHome }}"
+                    style="
+                      width: 38px;
+                      height: 38px;
+                      border-radius: 11px;
+                      border: 1px solid #e6dac2;
+                      background: #fffcf4;
+                      font-size: 19px;
+                      color: #7a5c3e;
+                      cursor: pointer;
+                    "
+                  >
+                    ‹
+                  </button>
+                  <div
+                    style="
+                      flex: 1;
+                      text-align: center;
+                      font-family: &quot;Noto Serif TC&quot;, serif;
+                      font-weight: 700;
+                      font-size: 16px;
+                      color: #3b3128;
+                      margin-right: 38px;
+                    "
+                  >
+                    安太歲法會
+                  </div>
+                </div>
+                <div
+                  style="
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    text-align: center;
+                    padding: 40px 30px;
+                  "
+                >
+                  <div
+                    style="
+                      width: 104px;
+                      height: 104px;
+                      border-radius: 50%;
+                      background: #efe4cb;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      font-size: 46px;
+                    "
+                  >
+                    🔒
+                  </div>
+                  <div
+                    style="
+                      font-family: &quot;Noto Serif TC&quot;, serif;
+                      font-weight: 900;
+                      font-size: 24px;
+                      color: #3b3128;
+                      margin-top: 26px;
+                    "
+                  >
+                    本年度報名已截止
+                  </div>
+                  <div
+                    style="
+                      font-size: 15px;
+                      color: #8a7d66;
+                      margin-top: 12px;
+                      line-height: 1.9;
+                      max-width: 300px;
+                    "
+                  >
+                    安太歲法會目前暫停開放報名，感謝您的支持與護持。開放時間將於道院公告，敬請留意最新消息。
+                  </div>
+                  <button
+                    onclick="{{ goHome }}"
+                    style="
+                      margin-top: 30px;
+                      padding: 15px 40px;
+                      border: none;
+                      border-radius: 14px;
+                      background: #b23b34;
+                      color: #fff9ed;
+                      font-size: 16px;
+                      font-weight: 700;
+                      cursor: pointer;
+                    "
+                  >
+                    返回首頁
+                  </button>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+    </x-dc>
+    <script
+      type="text/x-dc"
+      data-dc-script
+      data-props="{&quot;$preview&quot;:{&quot;width&quot;:480,&quot;height&quot;:940}}"
+    >
+      const ROC_YEARS = Array.from({length: 115}, (_, i) => { const y = 115 - i; return { v: String(y), label: y === 1 ? '民國 元年' : `民國 ${y} 年` }; });
+      const MONTHS_SOLAR = Array.from({length: 12}, (_, i) => ({ v: String(i + 1), label: `${i + 1} 月` }));
+      const MONTHS_LUNAR = Array.from({length: 12}, (_, i) => ({ v: String(i + 1), label: `${i + 1} 月` })).concat(Array.from({length: 12}, (_, i) => ({ v: `r${i + 1}`, label: `閏 ${i + 1} 月` })));
+      const DAYS = Array.from({length: 31}, (_, i) => ({ v: String(i + 1), label: `${i + 1} 日` }));
+      const SHICHENS = [
+        { v: '吉時', label: '吉時（不確定時辰請選此）' },
+        { v: '子', label: '子時 23–01' }, { v: '丑', label: '丑時 01–03' }, { v: '寅', label: '寅時 03–05' }, { v: '卯', label: '卯時 05–07' },
+        { v: '辰', label: '辰時 07–09' }, { v: '巳', label: '巳時 09–11' }, { v: '午', label: '午時 11–13' }, { v: '未', label: '未時 13–15' },
+        { v: '申', label: '申時 15–17' }, { v: '酉', label: '酉時 17–19' }, { v: '戌', label: '戌時 19–21' }, { v: '亥', label: '亥時 21–23' }
+      ];
+      const BANK_INFO = {
+        lighting: { bank: '中國信託（822）', branch: '竹北分行', acct: '034540674409', name: '鄭雅玲', note: '匯款備註欄請填寫匯款人姓名（勿填點燈種類）' },
+        pudu: { bank: '○○銀行（000）', branch: '○○分行', acct: '0000-000-000000', name: '境心殿無極道院', note: '匯款備註欄請填寫匯款人姓名' },
+        lidou: { bank: '○○銀行（000）', branch: '○○分行', acct: '0000-000-000000', name: '境心殿無極道院', note: '匯款備註欄請填寫匯款人姓名' }
+      };
+      const CEREMONIES = {
+        lighting: { name: '祭解點燈法會', year: '115 年度（丙午年）', sub: '一盞明燈，護佑闔家一整年', period: '2026/01/31（六）– 02/01（日）', place: '境心殿無極道院・桃園市觀音區文化路坑尾段376巷111弄6號', itemsTitle: '報名登別', itemsNote: '可複選；大、小平安燈與藥師燈已內含祭解，不需另勾祭解', desc: '隨著新年的來臨，我們都希望順利地擁抱嶄新的一年！透過點燈儀式意喻著整年都有點燈供奉神明，燈上清楚標示每位信眾的姓名，讓神明能清楚看到，以祈求來年的護佑。' },
+        pudu: { name: '中元普渡法會', sub: '慎終追遠，普施十方，功德圓滿', period: '2026/07/15 – 2026/08/20', place: '境心殿無極道院・廣場', itemsTitle: '選擇項目', itemsNote: '家普、超渡、法懺可報多筆', desc: '中元普渡秉持慎終追遠之心，超薦歷代祖先、累劫冤親，並普施十方。信眾可依需求報名贊普、家普、超渡等項目，法會功德回向闔家。' },
+        lidou: { name: '禮斗祈安法會', sub: '安奉斗燈，祈求元辰光彩、闔家順遂', period: '2026/09/01 – 2026/10/10', place: '境心殿無極道院・斗姥殿', itemsTitle: '選擇斗位', itemsNote: '名額有限，額滿為止', desc: '禮斗又稱拜斗，藉由安奉斗燈禮拜星君，祈求消災解厄、元辰光彩、福壽綿長。本殿設五福祥運斗、十二神尊斗及特殊斗首，信眾可依所求選擇安奉。' }
+      };
+
+      class Component extends DCLogic {
+        constructor(props) {
+          super(props);
+          this.state = {
+            screen: 'home', ceremony: null, step: 0,
+            fam: { contact: '', phone: '', address: '', note: '' },
+            mem: { gender: '男', calType: 'lunar', year: '', month: '', day: '', shichen: '' },
+            qty: {}, suixi: '', last5: '', receipt: '',
+            famContact: '', famPhone: '', apeace: '', awealth: ''
+          };
+          this.STEPS = ['intro', 'basic', 'birth', 'items', 'pay', 'done'];
+
+          this.attendPeaceOpts = [
+            { v: 'p_y', label: '能親自到場' },
+            { v: 'p_n', label: '無法親自到場' },
+            { v: 'p_x', label: '無報名此燈別' }
+          ];
+          this.attendWealthOpts = [
+            { v: 'w_y', label: '能親自到場' },
+            { v: 'w_n', label: '無法親自到場' },
+            { v: 'w_x', label: '無報名此燈別' }
+          ];
+        }
+
+        f(n) { return '$' + Number(n).toLocaleString('en-US'); }
+
+        rawGroups(c) {
+          if (c === 'lighting') return [{ title: '', items: [
+            { id: 'l_jie', name: '祭解', desc: '補運祭解，化解流年不順', price: 1000, unlimited: true },
+            { id: 'l_sp', name: '小平安燈', desc: '內含祭解，祈求平安順遂', price: 1800, quota: 286, taken: 0 },
+            { id: 'l_bp', name: '大平安燈', desc: '內含祭解，闔家平安、福運亨通', price: 12000, quota: 12, taken: 0 },
+            { id: 'l_sc', name: '小財神燈', desc: '招財納福', price: 1800, quota: 126, taken: 0 },
+            { id: 'l_bc', name: '大財神燈', desc: '財源廣進、事業興隆', price: 15000, quota: 66, taken: 0 },
+            { id: 'l_ys', name: '藥師燈', desc: '內含祭解，消災延壽、身體健康', price: 15000, quota: 36, taken: 0 }
+          ]}];
+          if (c === 'pudu') return [{ title: '', items: [
+            { id: 'p_zan', name: '贊普', desc: '總壇贊普，功德圓滿', price: 2000, unlimited: true },
+            { id: 'p_jia', name: '報恩家普', desc: '以家庭為單位普施（可多筆）', price: 1200, unlimited: true },
+            { id: 'p_chao', name: '薦拔超渡', desc: '超薦歷代祖先、嬰靈（可多筆）', price: 600, unlimited: true },
+            { id: 'p_jiu', name: '救罪法懺', desc: '禮懺解冤（可多筆）', price: 800, unlimited: true },
+            { id: 'p_en', name: '恩親法懺', desc: '報答親恩', price: 800, unlimited: true },
+            { id: 'p_sui', name: '隨喜功德', desc: '隨喜金額，量力而為', price: 0, custom: true, unlimited: true }
+          ]}];
+          const twelve = ['西華金母斗', '無極老母斗', '觀世音菩薩斗', '廣澤尊王斗', '真武大帝玄天斗', '開漳聖王斗', '九天玄女斗', '地母元君斗', '文財神斗', '武財神斗', '關聖帝君斗', '天上聖母斗'];
+          return [
+            { title: '五福祥運斗', note: '名額有限', items: [
+              { id: 'd_yu', name: '玉皇至尊禮斗', desc: '至尊斗首', price: 6000, quota: 1, taken: 0 },
+              { id: 'd_ds', name: '大勢至菩薩禮斗', price: 3600, quota: 2, taken: 1 },
+              { id: 'd_wd', name: '五斗星君禮斗', price: 3600, quota: 2, taken: 0 },
+              { id: 'd_sg', name: '三官大帝財斗', price: 3600, quota: 3, taken: 1 },
+              { id: 'd_wl', name: '五路財神財斗', price: 3600, quota: 3, taken: 2 }
+            ]},
+            { title: '十二神尊斗', note: '每斗位限 6 名', items: twelve.map((n, i) => ({ id: 'd12_' + i, name: n, price: 1800, quota: 6, taken: 0 })) },
+            { title: '特殊斗首', note: '福祿貴人斗、魁星斗不限名額', items: [
+              { id: 'd_gz', name: '玉皇三公主斗首', desc: '本殿主祀，尊榮斗首', price: 12000, quota: 1, taken: 1 },
+              { id: 'd_fgz', name: '玉皇三公主副斗首', price: 6000, quota: 2, taken: 0 },
+              { id: 'd_fl', name: '福祿貴人斗', desc: '招貴人、添福祿', price: 1200, unlimited: true },
+              { id: 'd_kx', name: '魁星斗', desc: '文昌利試，金榜題名', price: 600, unlimited: true }
+            ]}
+          ];
+        }
+
+        buildGroups() {
+          const c = this.state.ceremony; if (!c) return [];
+          const qty = this.state.qty;
+          const single = c === 'lighting';
+          const locks = {};
+          if (single) {
+            const sp = qty['l_sp'] > 0, bp = qty['l_bp'] > 0, sc = qty['l_sc'] > 0, bc = qty['l_bc'] > 0, ys = qty['l_ys'] > 0;
+            if (sp || bp || ys) locks['l_jie'] = '已內含祭解，免勾選';
+            if (bp) locks['l_sp'] = '已選大平安燈';
+            if (sp) locks['l_bp'] = '已選小平安燈';
+            if (bc) locks['l_sc'] = '已選大財神燈';
+            if (sc) locks['l_bc'] = '已選小財神燈';
+          }
+          return this.rawGroups(c).map(g => ({
+            title: g.title || '', note: g.note || '', hasTitle: !!g.title,
+            items: g.items.map(it => {
+              const q = qty[it.id] || 0;
+              const remain = it.unlimited ? null : (it.quota - it.taken);
+              const isFull = !it.unlimited && remain <= 0;
+              const maxAdd = it.unlimited ? 99 : remain;
+              const lock = locks[it.id] || null;
+              const disabled = isFull || !!lock;
+              const sel = it.custom ? (Number(this.state.suixi) > 0) : (q > 0);
+              const statusLabel = lock ? lock : (it.unlimited ? '不限名額' : (isFull ? '已額滿' : ('剩餘 ' + remain + ' 名')));
+              const statusColor = lock ? '#9A8564' : (it.unlimited ? '#8A7A55' : (isFull ? '#B23B34' : (remain <= 10 ? '#C6871B' : '#4E7A4E')));
+              return {
+                id: it.id, name: it.name, desc: it.desc || '',
+                isCustom: !!it.custom,
+                priceLabel: it.custom ? '隨喜' : this.f(it.price),
+                remainLabel: statusLabel,
+                remainStyle: 'font-size:13px; font-weight:700; color:' + statusColor,
+                isFull, qty: q, qtyLabel: String(q), selected: sel,
+                showStepper: sel && !it.custom && !single,
+                checkMark: sel ? '✓' : '',
+                checkSty: 'flex:none; width:26px; height:26px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:800; margin-top:2px; color:' + (sel ? '#FFF9ED' : '#C9BB9B') + '; background:' + (sel ? '#B23B34' : 'transparent') + '; border:1.5px solid ' + (sel ? '#B23B34' : '#D8C79E'),
+                cardStyle: 'display:flex; flex-direction:column; gap:0px; padding:16px 18px; border-radius:18px; border:1.5px solid ' + (sel ? '#B23B34' : '#E7DBC4') + '; background:' + (sel ? '#FDF4EF' : '#FFFCF4') + '; box-shadow:' + (sel ? '0 8px 22px rgba(178,59,52,0.13)' : '0 1px 2px rgba(60,49,40,0.04)') + '; opacity:' + (disabled ? '0.5' : '1') + '; transition:all .18s ease;',
+                onToggle: disabled ? (() => {}) : (() => this.toggleItem(it.id)),
+                onInc: () => this.incItem(it.id, maxAdd),
+                onDec: () => this.decItem(it.id)
+              };
+            })
+          }));
+        }
+
+        toggleItem(id) {
+          const q = { ...this.state.qty };
+          q[id] = q[id] ? 0 : 1;
+          if (this.state.ceremony === 'lighting' && q[id] && (id === 'l_sp' || id === 'l_bp' || id === 'l_ys')) q['l_jie'] = 0;
+          this.setState({ qty: q });
+        }
+        incItem(id, max) { const q = { ...this.state.qty }; q[id] = Math.min((q[id] || 0) + 1, max); this.setState({ qty: q }); }
+        decItem(id) { const q = { ...this.state.qty }; q[id] = Math.max((q[id] || 0) - 1, 0); this.setState({ qty: q }); }
+
+        selection() {
+          const c = this.state.ceremony; const out = []; let total = 0;
+          if (c) this.rawGroups(c).forEach(g => g.items.forEach(it => {
+            if (it.custom) { const a = Number(this.state.suixi) || 0; if (a > 0) { out.push({ name: it.name, qtyLabel: '', subLabel: this.f(a) }); total += a; } return; }
+            const q = this.state.qty[it.id] || 0;
+            if (q > 0) { out.push({ name: it.name, qtyLabel: q > 1 ? ('× ' + q) : '', subLabel: this.f(it.price * q) }); total += it.price * q; }
+          }));
+          return { list: out, total };
+        }
+
+        stepKey() { return this.STEPS[this.state.step]; }
+        canNext() {
+          const k = this.stepKey(); const s = this.state;
+          if (k === 'basic') return !!(s.fam.contact.trim() && s.fam.phone.trim().length >= 8);
+          if (k === 'birth') return !!(s.mem.year && s.mem.month && s.mem.day && s.mem.shichen);
+          if (k === 'items') {
+            if (this.selection().total <= 0) return false;
+            if (s.ceremony === 'lighting') return !!(s.apeace && s.awealth && s.famContact.trim() && s.famPhone.trim().length >= 8);
+            return true;
+          }
+          if (k === 'pay') return s.last5.trim().length === 5;
+          return true;
+        }
+
+        scrollTop() { if (this.panelEl) this.panelEl.scrollTop = 0; }
+        openCer(key) { this.setState({ screen: 'flow', ceremony: key, step: 0 }); requestAnimationFrame(() => this.scrollTop()); }
+        goHome() { this.setState({ screen: 'home', ceremony: null, step: 0, qty: {}, suixi: '', last5: '', receipt: '', famContact: '', famPhone: '', apeace: '', awealth: '', fam: { contact: '', phone: '', address: '', note: '' }, mem: { gender: '男', calType: 'lunar', year: '', month: '', day: '', shichen: '' } }); }
+        next() {
+          const i = this.state.step;
+          if (i >= this.STEPS.length - 1) return;
+          if (!this.canNext()) return;
+          const ni = i + 1; const patch = { step: ni };
+          if (this.STEPS[ni] === 'done') patch.receipt = 'R2026' + String(Math.floor(Math.random() * 90000) + 10000);
+          this.setState(patch); requestAnimationFrame(() => this.scrollTop());
+        }
+        back() { if (this.state.step > 0) { this.setState({ step: this.state.step - 1 }); requestAnimationFrame(() => this.scrollTop()); } else this.goHome(); }
+
+        setFam(k, v) { this.setState({ fam: { ...this.state.fam, [k]: v } }); }
+        setMem(k, v) { this.setState({ mem: { ...this.state.mem, [k]: v } }); }
+
+        segSty(active) { const base = 'flex:1; padding:14px 0; border-radius:12px; font-size:16px; font-weight:600; cursor:pointer; transition:all .15s ease; '; return active ? base + 'border:1.5px solid #B23B34; background:#B23B34; color:#FFF9ED;' : base + 'border:1.5px solid #E6DAC2; background:#FFFCF4; color:#6E6355;'; }
+
+        renderVals() {
+          const s = this.state; const cer = CEREMONIES[s.ceremony] || {};
+          const k = this.stepKey();
+          const sel = this.selection();
+          const stepTitles = { intro: '法會介紹', basic: '基本資料', birth: '生辰資料', items: cer.itemsTitle || '選擇項目', pay: '確認與匯款', done: '報名完成' };
+          const progLabels = ['介紹', '資料', '生辰', '選項', '付款'];
+          const cur = s.step;
+          const progress = progLabels.map((label, i) => {
+            const state = cur > i ? 'done' : (cur === i ? 'now' : 'todo');
+            return { label, bar: state === 'todo' ? '#E2D4B6' : '#B23B34', color: state === 'now' ? '#B23B34' : (state === 'done' ? '#A8823C' : '#B3A88F'), weight: state === 'now' ? '700' : '500' };
+          });
+          const primaryLabels = { intro: '開始報名', basic: '下一步', birth: '下一步', items: '前往付款', pay: '確認送出', done: '' };
+          const can = this.canNext();
+          const isLighting = s.ceremony === 'lighting';
+          const monthOptions = s.mem.calType === 'lunar' ? MONTHS_LUNAR : MONTHS_SOLAR;
+
+          const radioVM = (opts, curVal, setter) => opts.map(o => ({
+            label: o.label, selected: curVal === o.v,
+            rowStyle: 'display:flex; align-items:center; gap:12px; padding:14px 16px; border-radius:12px; border:1.5px solid ' + (curVal === o.v ? '#B23B34' : '#E6DAC2') + '; background:' + (curVal === o.v ? '#FDF4EF' : '#FFFCF4') + '; cursor:pointer;',
+            dotStyle: 'flex:none; width:22px; height:22px; border-radius:50%; border:2px solid ' + (curVal === o.v ? '#B23B34' : '#D8C79E') + '; display:flex; align-items:center; justify-content:center;',
+            dotInner: 'width:11px; height:11px; border-radius:50%; background:' + (curVal === o.v ? '#B23B34' : 'transparent') + ';',
+            onSelect: () => setter(o.v)
+          }));
+          const primaryStyle = 'width:100%; padding:16px; border:none; border-radius:14px; font-size:17px; font-weight:700; cursor:' + (can ? 'pointer' : 'not-allowed') + '; background:' + (can ? '#B23B34' : '#D8CBB0') + '; color:' + (can ? '#FFF9ED' : '#F6EFE1') + '; transition:all .15s ease;';
+
+          return {
+            inFlow: s.screen === 'flow', inClosed: s.screen === 'closed',
+            isIntro: k === 'intro', isBasic: k === 'basic', isBirth: k === 'birth', isItems: k === 'items', isPay: k === 'pay', isDone: k === 'done',
+            showFooter: k !== 'done', showFooterTotal: (k === 'items' || k === 'pay'), showProgress: k !== 'done',
+            cerName: cer.name, cerSub: cer.sub, cerPeriod: cer.period, cerPlace: cer.place, cerDesc: cer.desc, cerYear: cer.year || '',
+            itemsTitle: cer.itemsTitle, itemsNote: cer.itemsNote,
+            isLighting, notLighting: !isLighting,
+            bank: BANK_INFO[s.ceremony] || BANK_INFO.pudu,
+            attendPeaceVM: radioVM(this.attendPeaceOpts, s.apeace, (v) => this.setState({ apeace: v })),
+            attendWealthVM: radioVM(this.attendWealthOpts, s.awealth, (v) => this.setState({ awealth: v })),
+            famContact: s.famContact, famPhone: s.famPhone,
+            onFamContact: (e) => this.setState({ famContact: e.target.value }),
+            onFamPhone: (e) => this.setState({ famPhone: e.target.value }),
+            stepTitle: stepTitles[k], progress,
+            primaryLabel: primaryLabels[k], primaryStyle,
+            groups: this.buildGroups(),
+            selList: sel.list, totalLabel: this.f(sel.total),
+            countLabel: sel.list.length > 0 ? (sel.list.length + ' 項') : '尚未選擇',
+            years: ROC_YEARS, months: monthOptions, days: DAYS, shichens: SHICHENS,
+            fam: s.fam, mem: s.mem, suixi: s.suixi, last5: s.last5, receipt: s.receipt,
+            doneName: s.fam.contact || '—',
+            gMaleSty: this.segSty(s.mem.gender === '男'), gFemaleSty: this.segSty(s.mem.gender === '女'),
+            cLunarSty: this.segSty(s.mem.calType === 'lunar'), cSolarSty: this.segSty(s.mem.calType === 'solar'),
+            openLighting: () => this.openCer('lighting'), openPudu: () => this.openCer('pudu'), openLidou: () => this.openCer('lidou'),
+            showClosedDemo: () => this.setState({ screen: 'closed' }),
+            goHome: () => this.goHome(), next: () => this.next(), back: () => this.back(), onPrimary: () => this.next(),
+            setPanel: (el) => { this.panelEl = el; },
+            onContact: (e) => this.setFam('contact', e.target.value), onPhone: (e) => this.setFam('phone', e.target.value),
+            onAddress: (e) => this.setFam('address', e.target.value), onNote: (e) => this.setFam('note', e.target.value),
+            gMale: () => this.setMem('gender', '男'), gFemale: () => this.setMem('gender', '女'),
+            cLunar: () => this.setMem('calType', 'lunar'), cSolar: () => this.setMem('calType', 'solar'),
+            onYear: (e) => this.setMem('year', e.target.value), onMonth: (e) => this.setMem('month', e.target.value),
+            onDay: (e) => this.setMem('day', e.target.value), onShichen: (e) => this.setMem('shichen', e.target.value),
+            onSuixi: (e) => this.setState({ suixi: (e.target.value || '').replace(/[^0-9]/g, '') }),
+            onLast5: (e) => this.setState({ last5: (e.target.value || '').replace(/[^0-9]/g, '').slice(0, 5) })
+          };
+        }
+      }
+    </script>
+  </body>
+</html>
