@@ -2384,6 +2384,125 @@
                     </div>
                   </sc-if>
 
+                  
+                  
+                  
+                  
+                  <!-- PUDU FULL FORM -->
+                  <sc-if value="{{ isPuduFullForm }}" hint-placeholder-val="{{ false }}">
+                    <div style="animation: fadeUp 0.4s ease both;">
+                      
+                      <!-- 基本資料 -->
+                      <div class="ceremony-card" style="padding:20px; margin-bottom: 24px;">
+                        <div style="font-family: 'Noto Serif TC', serif; font-weight: 700; font-size: 19px; color: #3b3128; margin-bottom: 16px;">基本資料</div>
+                        <label class="form-label">姓名 <span style="color:red">*</span></label>
+                        <input class="form-input" value="{{ pd.name }}" oninput="{{ onPdName }}" placeholder="請輸入姓名" style="margin-bottom: 12px;">
+                        <label class="form-label">電話 <span style="color:red">*</span></label>
+                        <input class="form-input" value="{{ pd.phone }}" oninput="{{ onPdPhone }}" placeholder="請輸入電話">
+                      </div>
+
+                      <!-- 贊普 -->
+                      <div class="ceremony-card" style="padding:20px; margin-bottom: 24px;">
+                        <div style="font-family: 'Noto Serif TC', serif; font-weight: 700; font-size: 19px; color: #3b3128; margin-bottom: 8px;">贊普：費用1500</div>
+                        <div style="font-size: 13.5px; color: #8A7A55; margin-bottom: 16px; line-height: 1.6;">佈施無主之孤魂．供食.供財.助孤魂脫惡獲福．有所依歸.廣積陰德。<br>供品捐助需要援助之人,發善念衍善舉 陽德福報.陰德陽功俱全。<br>註：贊普物資全部捐贈。</div>
+                        
+                        <label class="form-label">——個人姓名——桌數 (範例: 童子均2桌)</label>
+                        <textarea class="form-input" style="height: 80px; margin-bottom: 12px;" placeholder="請輸入" oninput="{{ onPdZanP }}">{{ pd.zanPersonal }}</textarea>
+                        
+                        <label class="form-label">——公司行號——桌數 (範例: 境心景觀設計公司20桌)</label>
+                        <textarea class="form-input" style="height: 80px;" placeholder="請輸入" oninput="{{ onPdZanC }}">{{ pd.zanCompany }}</textarea>
+                      </div>
+
+                      <!-- 報恩家普 -->
+                      <div class="ceremony-card" style="padding:20px; margin-bottom: 24px;">
+                        <div style="font-family: 'Noto Serif TC', serif; font-weight: 700; font-size: 19px; color: #3b3128; margin-bottom: 8px;">報恩家普：費用3000</div>
+                        <div style="font-size: 13.5px; color: #8A7A55; margin-bottom: 16px; line-height: 1.6;">普渡歷代祖先，祖先業力功過代代相傳對家族運勢影響甚鉅,<br>慎終追遠超渡祖先，是對家運對自己以及後代子孫最好的傳承果報。</div>
+                        
+                        <label class="form-label">--桌數--</label>
+                        <input class="form-input" value="{{ pd.jiaQty }}" oninput="{{ onPdJiaQty }}" placeholder="請輸入桌數" style="margin-bottom: 16px;">
+
+                        <sc-for list="{{ puduJiapu }}" as="item" index="i">
+                          <div style="margin-bottom: 16px; padding: 16px; border-radius: 12px; background: #FFF; border: 1px dashed #E6DAC2;">
+                            <div style="font-size: 14px; font-weight: 700; color: #8A7A55; margin-bottom: 12px;">( 報名 No.{{ i + 1 }} )</div>
+                            <label class="form-label">歷代祖先姓氏 (範例: 鄧氏歷代祖先)</label>
+                            <input class="form-input" value="{{ item.ancestor }}" oninput="{{ item.onAncestor }}" style="margin-bottom: 12px;">
+                            <label class="form-label">陽上 (範例: 陽上報恩人鄧發財)</label>
+                            <input class="form-input" value="{{ item.yang }}" oninput="{{ item.onYang }}" style="margin-bottom: 12px;">
+                            <label class="form-label">地址 (範例: 台北市中華路52號)</label>
+                            <input class="form-input" value="{{ item.address }}" oninput="{{ item.onAddress }}">
+                          </div>
+                        </sc-for>
+
+                        <label class="form-label" style="margin-top: 16px;">家普物資選擇</label>
+                        <div style="display:flex; gap:12px;">
+                          <sc-for list="{{ jiapuOpts }}" as="opt">
+                            <div onclick="{{ opt.onSelect }}" style="{{ opt.rowStyle }}">
+                              <div style="{{ opt.dotStyle }}"><div style="{{ opt.dotInner }}"></div></div>
+                              <div style="font-size:15.5px; font-weight:600; color:#3b3128;">{{ opt.label }}</div>
+                            </div>
+                          </sc-for>
+                        </div>
+                      </div>
+
+                      <!-- 薦拔超渡 -->
+                      <div class="ceremony-card" style="padding:20px; margin-bottom: 24px;">
+                        <div style="font-family: 'Noto Serif TC', serif; font-weight: 700; font-size: 19px; color: #3b3128; margin-bottom: 8px;">薦拔超渡：費用3600</div>
+                        <div style="font-size: 13.5px; color: #8A7A55; margin-bottom: 16px; line-height: 1.6;">旨在為歷代祖先、冤親、嬰靈、往生寵物及指定亡者誦經超薦、禮懺迴向...</div>
+                        
+                        <sc-for list="{{ puduChaodu }}" as="item" index="i">
+                          <div style="margin-bottom: 16px; padding: 16px; border-radius: 12px; background: #FFF; border: 1px dashed #E6DAC2;">
+                            <div style="font-size: 14px; font-weight: 700; color: #8A7A55; margin-bottom: 12px;">( 報名 No.{{ i + 1 }} )</div>
+                            <label class="form-label">過往親人,好友姓名</label>
+                            <input class="form-input" value="{{ item.deceased }}" oninput="{{ item.onDeceased }}" style="margin-bottom: 12px;">
+                            <label class="form-label">改名前舊名 (沒改名無需填寫)</label>
+                            <input class="form-input" value="{{ item.oldName }}" oninput="{{ item.onOldName }}" style="margin-bottom: 12px;">
+                            <label class="form-label">生時或歿時</label>
+                            <input class="form-input" value="{{ item.birthDeath }}" oninput="{{ item.onBirthDeath }}" style="margin-bottom: 12px;" placeholder="國曆/農曆幾月幾日">
+                            <label class="form-label">陽上</label>
+                            <input class="form-input" value="{{ item.yang }}" oninput="{{ item.onYang }}">
+                          </div>
+                        </sc-for>
+                      </div>
+
+                      <!-- 赦罪法懺 -->
+                      <div class="ceremony-card" style="padding:20px; margin-bottom: 24px;">
+                        <div style="font-family: 'Noto Serif TC', serif; font-weight: 700; font-size: 19px; color: #3b3128; margin-bottom: 8px;">赦罪法懺：費用免費</div>
+                        <div style="font-size: 13.5px; color: #8A7A55; margin-bottom: 16px; line-height: 1.6;">填寫範例：<br>姓名：祁美麗（改名前舊名：祁健康）<br>生辰：國曆66年6月6日<br>地址：台北市中華路二段55號</div>
+                        
+                        <sc-for list="{{ puduFachan }}" as="item" index="i">
+                          <div style="margin-bottom: 12px;">
+                            <label class="form-label">( 報名 No.{{ i + 1 }} ) 姓名, 改名前舊名, 生辰, 地址</label>
+                            <textarea class="form-input" style="height: 70px;" oninput="{{ item.onText }}">{{ item.text }}</textarea>
+                          </div>
+                        </sc-for>
+                      </div>
+
+                      <!-- 匯款資料 -->
+                      <div class="ceremony-card" style="padding:20px; margin-bottom: 24px;">
+                        <div style="font-family: 'Noto Serif TC', serif; font-weight: 700; font-size: 19px; color: #3b3128; margin-bottom: 8px;">額外資料與匯款</div>
+                        <div style="font-size: 13.5px; color: #8A7A55; margin-bottom: 16px; line-height: 1.6;">
+                          恩親法懺：費用8800 (僅限21個名額，報名請聯絡曾師兄電話0963-731-118)<br><br>
+                          匯款帳號資料：中國信託竹北分行 (822) 034540674409 鄭雅玲
+                        </div>
+
+                        <label class="form-label">贊助境心殿中元普渡法會隨喜功德款</label>
+                        <input class="form-input" value="{{ pd.suixi }}" oninput="{{ onPdSuixi }}" style="margin-bottom: 16px;" placeholder="隨喜金額">
+
+                        <label class="form-label">匯款人姓名 <span style="color:red">*</span></label>
+                        <input class="form-input" value="{{ pd.payName }}" oninput="{{ onPdPayName }}" style="margin-bottom: 12px;">
+                        <label class="form-label">匯款金額</label>
+                        <input class="form-input" value="{{ pd.payAmt }}" oninput="{{ onPdPayAmt }}" style="margin-bottom: 12px;">
+                        <label class="form-label">匯款日期 <span style="color:red">*</span></label>
+                        <input class="form-input" value="{{ pd.payDate }}" oninput="{{ onPdPayDate }}" style="margin-bottom: 12px;" placeholder="如 2026/07/15">
+                        <label class="form-label">匯款帳號末5碼 <span style="color:red">*</span></label>
+                        <input class="form-input" value="{{ pd.payLast5 }}" oninput="{{ onPdPayLast5 }}" style="margin-bottom: 12px;">
+                        <label class="form-label">備註</label>
+                        <textarea class="form-input" style="height: 60px;" oninput="{{ onPdPayMemo }}">{{ pd.payMemo }}</textarea>
+                      </div>
+
+                    </div>
+                  </sc-if>
+
                   <!-- PAY -->
                   <sc-if value="{{ isPay }}" hint-placeholder-val="{{ false }}">
                     <div style="animation: fadeUp 0.4s ease both">
@@ -3011,20 +3130,24 @@
             fam: { contact: '', phone: '', address: '', note: '' },
             mem: { gender: '男', calType: 'lunar', year: '', month: '', day: '', shichen: '' },
             qty: {}, suixi: '', last5: '', receipt: '',
-            famContact: '', famPhone: '', apeace: '', awealth: ''
+            famContact: '', famPhone: '', apeace: '', awealth: '',
+            puduData: {
+              name: '', phone: '',
+              zanPersonal: '', zanCompany: '',
+              jiaQty: '',
+              jiapu: [ { ancestor: '', yang: '', address: '' }, { ancestor: '', yang: '', address: '' }, { ancestor: '', yang: '', address: '' } ],
+              jiapuMaterial: '',
+              chao: [ { deceased: '', oldName: '', birthDeath: '', yang: '' }, { deceased: '', oldName: '', birthDeath: '', yang: '' } ],
+              fachan: [ '', '', '', '', '', '', '', '' ],
+              suixi: '',
+              payName: '', payAmt: '', payDate: '', payLast5: '', payMemo: ''
+            }
           };
           this.STEPS = ['intro', 'basic', 'birth', 'items', 'pay', 'done'];
-
-          this.attendPeaceOpts = [
-            { v: 'p_y', label: '能親自到場' },
-            { v: 'p_n', label: '無法親自到場' },
-            { v: 'p_x', label: '無報名此燈別' }
-          ];
-          this.attendWealthOpts = [
-            { v: 'w_y', label: '能親自到場' },
-            { v: 'w_n', label: '無法親自到場' },
-            { v: 'w_x', label: '無報名此燈別' }
-          ];
+          
+          this.attendPeaceOpts = [ { v: 'p_y', label: '能親自到場' }, { v: 'p_n', label: '無法親自到場' }, { v: 'p_x', label: '無報名此燈別' } ];
+          this.attendWealthOpts = [ { v: 'w_y', label: '能親自到場' }, { v: 'w_n', label: '無法親自到場' }, { v: 'w_x', label: '無報名此燈別' } ];
+          this.jiapuOptsRaw = [ { v: '取回', label: '取回' }, { v: '捐贈', label: '捐贈' } ];
         }
 
         f(n) { return '$' + Number(n).toLocaleString('en-US'); }
@@ -3037,14 +3160,6 @@
             { id: 'l_sc', name: '小財神燈', desc: '招財納福', price: 1800, quota: 126, taken: 0 },
             { id: 'l_bc', name: '大財神燈', desc: '財源廣進、事業興隆', price: 15000, quota: 66, taken: 0 },
             { id: 'l_ys', name: '藥師燈', desc: '內含祭解，消災延壽、身體健康', price: 15000, quota: 36, taken: 0 }
-          ]}];
-          if (c === 'pudu') return [{ title: '', items: [
-            { id: 'p_zan', name: '贊普', desc: '總壇贊普，功德圓滿', price: 2000, unlimited: true },
-            { id: 'p_jia', name: '報恩家普', desc: '以家庭為單位普施（可多筆）', price: 1200, unlimited: true },
-            { id: 'p_chao', name: '薦拔超渡', desc: '超薦歷代祖先、嬰靈（可多筆）', price: 600, unlimited: true },
-            { id: 'p_jiu', name: '救罪法懺', desc: '禮懺解冤（可多筆）', price: 800, unlimited: true },
-            { id: 'p_en', name: '恩親法懺', desc: '報答親恩', price: 800, unlimited: true },
-            { id: 'p_sui', name: '隨喜功德', desc: '隨喜金額，量力而為', price: 0, custom: true, unlimited: true }
           ]}];
           const twelve = ['西華金母斗', '無極老母斗', '觀世音菩薩斗', '廣澤尊王斗', '真武大帝玄天斗', '開漳聖王斗', '九天玄女斗', '地母元君斗', '文財神斗', '武財神斗', '關聖帝君斗', '天上聖母斗'];
           return [
@@ -3066,7 +3181,7 @@
         }
 
         buildGroups() {
-          const c = this.state.ceremony; if (!c) return [];
+          const c = this.state.ceremony; if (!c || c === 'pudu') return [];
           const qty = this.state.qty;
           const single = c === 'lighting';
           const locks = {};
@@ -3120,7 +3235,7 @@
 
         selection() {
           const c = this.state.ceremony; const out = []; let total = 0;
-          if (c) this.rawGroups(c).forEach(g => g.items.forEach(it => {
+          if (c && c !== 'pudu') this.rawGroups(c).forEach(g => g.items.forEach(it => {
             if (it.custom) { const a = Number(this.state.suixi) || 0; if (a > 0) { out.push({ name: it.name, qtyLabel: '', subLabel: this.f(a) }); total += a; } return; }
             const q = this.state.qty[it.id] || 0;
             if (q > 0) { out.push({ name: it.name, qtyLabel: q > 1 ? ('× ' + q) : '', subLabel: this.f(it.price * q) }); total += it.price * q; }
@@ -3128,9 +3243,15 @@
           return { list: out, total };
         }
 
-        stepKey() { return this.STEPS[this.state.step]; }
+        getStepsArr() {
+          if (this.state.ceremony === 'pudu') return ['intro', 'pudu_full_form', 'done'];
+          return this.STEPS;
+        }
+
+        stepKey() { return this.getStepsArr()[this.state.step]; }
         canNext() {
           const k = this.stepKey(); const s = this.state;
+          if (k === 'pudu_full_form') return !!(s.puduData.name.trim() && s.puduData.phone.trim().length >= 8);
           if (k === 'basic') return !!(s.fam.contact.trim() && s.fam.phone.trim().length >= 8);
           if (k === 'birth') return !!(s.mem.year && s.mem.month && s.mem.day && s.mem.shichen);
           if (k === 'items') {
@@ -3144,34 +3265,96 @@
 
         scrollTop() { if (this.panelEl) this.panelEl.scrollTop = 0; }
         openCer(key) { this.setState({ screen: 'flow', ceremony: key, step: 0 }); requestAnimationFrame(() => this.scrollTop()); }
-        goHome() { this.setState({ screen: 'home', ceremony: null, step: 0, qty: {}, suixi: '', last5: '', receipt: '', famContact: '', famPhone: '', apeace: '', awealth: '', fam: { contact: '', phone: '', address: '', note: '' }, mem: { gender: '男', calType: 'lunar', year: '', month: '', day: '', shichen: '' } }); }
+        goHome() { this.setState({ screen: 'home', ceremony: null, step: 0, qty: {}, suixi: '', last5: '', receipt: '', famContact: '', famPhone: '', apeace: '', awealth: '', fam: { contact: '', phone: '', address: '', note: '' }, mem: { gender: '男', calType: 'lunar', year: '', month: '', day: '', shichen: '' }, puduData: { name: '', phone: '', zanPersonal: '', zanCompany: '', jiaQty: '', jiapu: [ { ancestor: '', yang: '', address: '' }, { ancestor: '', yang: '', address: '' }, { ancestor: '', yang: '', address: '' } ], jiapuMaterial: '', chao: [ { deceased: '', oldName: '', birthDeath: '', yang: '' }, { deceased: '', oldName: '', birthDeath: '', yang: '' } ], fachan: [ '', '', '', '', '', '', '', '' ], suixi: '', payName: '', payAmt: '', payDate: '', payLast5: '', payMemo: '' } }); }
+        
+        async submitPudu(receipt) {
+          const p = this.state.puduData;
+
+          const formData = new URLSearchParams();
+          formData.append('entry.1086423090', p.name);
+          formData.append('entry.1356329549', p.phone);
+          
+          if (p.zanPersonal) formData.append('entry.326848920', p.zanPersonal);
+          if (p.zanCompany) formData.append('entry.729848440', p.zanCompany);
+          
+          if (p.jiaQty) formData.append('entry.1370549026', p.jiaQty);
+          if (p.jiapuMaterial) formData.append('entry.1149929838', p.jiapuMaterial);
+          if(p.jiapu[0].ancestor) formData.append('entry.1627886160', p.jiapu[0].ancestor);
+          if(p.jiapu[0].yang) formData.append('entry.1100279851', p.jiapu[0].yang);
+          if(p.jiapu[0].address) formData.append('entry.2096064458', p.jiapu[0].address);
+          if(p.jiapu[1].ancestor) formData.append('entry.417616043', p.jiapu[1].ancestor);
+          if(p.jiapu[1].yang) formData.append('entry.809499953', p.jiapu[1].yang);
+          if(p.jiapu[1].address) formData.append('entry.932360273', p.jiapu[1].address);
+          if(p.jiapu[2].ancestor) formData.append('entry.1767641962', p.jiapu[2].ancestor);
+          if(p.jiapu[2].yang) formData.append('entry.602838288', p.jiapu[2].yang);
+          if(p.jiapu[2].address) formData.append('entry.279424145', p.jiapu[2].address);
+
+          if(p.chao[0].deceased) formData.append('entry.852490497', p.chao[0].deceased);
+          if(p.chao[0].oldName) formData.append('entry.1040864235', p.chao[0].oldName);
+          if(p.chao[0].birthDeath) formData.append('entry.1828379935', p.chao[0].birthDeath);
+          if(p.chao[0].yang) formData.append('entry.1973364599', p.chao[0].yang);
+          if(p.chao[1].deceased) formData.append('entry.1747687076', p.chao[1].deceased);
+          if(p.chao[1].oldName) formData.append('entry.1383203405', p.chao[1].oldName);
+          if(p.chao[1].birthDeath) formData.append('entry.2103513116', p.chao[1].birthDeath);
+          if(p.chao[1].yang) formData.append('entry.1182281753', p.chao[1].yang);
+
+          const fj = ['46365478', '1202587976', '1439267233', '1689645470', '1220961770', '24601252', '1659967170', '1661452503'];
+          p.fachan.forEach((val, i) => {
+            if (fj[i] && val) formData.append('entry.' + fj[i], val);
+          });
+
+          if (p.suixi) formData.append('entry.486781122', p.suixi);
+
+          if (p.payAmt) {
+            formData.append('entry.108608230', p.payName);
+            formData.append('entry.118848601', p.payAmt);
+            formData.append('entry.933322058', p.payDate);
+            formData.append('entry.1950558206', p.payLast5);
+            formData.append('entry.557062930', `系統單號: ${receipt}\n${p.payMemo}`);
+          }
+
+          try {
+            await fetch('https://docs.google.com/forms/d/e/1FAIpQLScH6O418f7Zzx77NTHPov9W-D2eAPH8duMIPy89Sz585w18FQ/formResponse', {
+              method: 'POST', mode: 'no-cors', body: formData
+            });
+          } catch(e) {
+            console.error('Google Form submit error', e);
+          }
+        }
+
         next() {
+          const arr = this.getStepsArr();
           const i = this.state.step;
-          if (i >= this.STEPS.length - 1) return;
+          if (i >= arr.length - 1) return;
           if (!this.canNext()) return;
           const ni = i + 1; const patch = { step: ni };
-          if (this.STEPS[ni] === 'done') {
+          if (arr[ni] === 'done') {
             patch.receipt = 'R2026' + String(Math.floor(Math.random() * 90000) + 10000);
             
-            // 將資料同步送往 Google Sheets
-            const payload = {
-              ...this.state,
-              receipt: patch.receipt,
-              totalAmt: this.selection().total
-            };
-            fetch('https://script.google.com/macros/s/AKfycbx9U6T5oRl1VkhiJXE59jW_kudSWobhaW9LBr7wIZ18GbExDmRxtIMf_rdLi4hYOCqy6g/exec', {
-              method: 'POST',
-              mode: 'no-cors',
-              headers: { 'Content-Type': 'text/plain' },
-              body: JSON.stringify(payload)
-            }).catch(err => console.log('Google Sheets Sync Error:', err));
+            if (this.state.ceremony === 'pudu') {
+              this.submitPudu(patch.receipt);
+            } else {
+              const payload = {
+                ...this.state,
+                receipt: patch.receipt,
+                totalAmt: this.selection().total
+              };
+              fetch('https://script.google.com/macros/s/AKfycbx9U6T5oRl1VkhiJXE59jW_kudSWobhaW9LBr7wIZ18GbExDmRxtIMf_rdLi4hYOCqy6g/exec', {
+                method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify(payload)
+              }).catch(err => console.log('Google Sheets Sync Error:', err));
+            }
           }
           this.setState(patch); requestAnimationFrame(() => this.scrollTop());
         }
         back() { if (this.state.step > 0) { this.setState({ step: this.state.step - 1 }); requestAnimationFrame(() => this.scrollTop()); } else this.goHome(); }
 
-        setFam(k, v) { this.setState({ fam: { ...this.state.fam, [k]: v } }); }
-        setMem(k, v) { this.setState({ mem: { ...this.state.mem, [k]: v } }); }
+        setPuduVal(k, v) { this.setState({ puduData: { ...this.state.puduData, [k]: v } }); }
+        setPuduArr(cat, idx, field, val) {
+          const p = { ...this.state.puduData };
+          if (field === 'text') p[cat][idx] = val;
+          else p[cat][idx][field] = val;
+          this.setState({ puduData: p });
+        }
 
         segSty(active) { const base = 'flex:1; padding:14px 0; border-radius:12px; font-size:16px; font-weight:600; cursor:pointer; transition:all .15s ease; '; return active ? base + 'border:1.5px solid #B23B34; background:#B23B34; color:#FFF9ED;' : base + 'border:1.5px solid #E6DAC2; background:#FFFCF4; color:#6E6355;'; }
 
@@ -3179,21 +3362,22 @@
           const s = this.state; const cer = CEREMONIES[s.ceremony] || {};
           const k = this.stepKey();
           const sel = this.selection();
-          const stepTitles = { intro: '法會介紹', basic: '基本資料', birth: '生辰資料', items: cer.itemsTitle || '選擇項目', pay: '確認與匯款', done: '報名完成' };
-          const progLabels = ['介紹', '資料', '生辰', '選項', '付款'];
+          const stepTitles = { intro: '法會介紹', basic: '基本資料', birth: '生辰資料', items: cer.itemsTitle || '選擇項目', pudu_full_form: '填寫表單資料', pay: '確認與匯款', done: '報名完成' };
+          
+          let progLabels = s.ceremony === 'pudu' ? ['介紹', '填寫與匯款'] : ['介紹', '資料', '生辰', '選項', '付款'];
           const cur = s.step;
           const progress = progLabels.map((label, i) => {
             const state = cur > i ? 'done' : (cur === i ? 'now' : 'todo');
             return { label, bar: state === 'todo' ? '#E2D4B6' : '#B23B34', color: state === 'now' ? '#B23B34' : (state === 'done' ? '#A8823C' : '#B3A88F'), weight: state === 'now' ? '700' : '500' };
           });
-          const primaryLabels = { intro: '開始報名', basic: '下一步', birth: '下一步', items: '前往付款', pay: '確認送出', done: '' };
+          const primaryLabels = { intro: '開始報名', basic: '下一步', birth: '下一步', items: '前往付款', pudu_full_form: '確認送出', pay: '確認送出', done: '' };
           const can = this.canNext();
           const isLighting = s.ceremony === 'lighting';
           const monthOptions = s.mem.calType === 'lunar' ? MONTHS_LUNAR : MONTHS_SOLAR;
 
           const radioVM = (opts, curVal, setter) => opts.map(o => ({
             label: o.label, selected: curVal === o.v,
-            rowStyle: 'display:flex; align-items:center; gap:12px; padding:14px 16px; border-radius:12px; border:1.5px solid ' + (curVal === o.v ? '#B23B34' : '#E6DAC2') + '; background:' + (curVal === o.v ? '#FDF4EF' : '#FFFCF4') + '; cursor:pointer;',
+            rowStyle: 'display:flex; align-items:center; gap:12px; padding:14px 16px; border-radius:12px; border:1.5px solid ' + (curVal === o.v ? '#B23B34' : '#E6DAC2') + '; background:' + (curVal === o.v ? '#FDF4EF' : '#FFFCF4') + '; cursor:pointer; flex: 1;',
             dotStyle: 'flex:none; width:22px; height:22px; border-radius:50%; border:2px solid ' + (curVal === o.v ? '#B23B34' : '#D8C79E') + '; display:flex; align-items:center; justify-content:center;',
             dotInner: 'width:11px; height:11px; border-radius:50%; background:' + (curVal === o.v ? '#B23B34' : 'transparent') + ';',
             onSelect: () => setter(o.v)
@@ -3202,7 +3386,7 @@
 
           return {
             inFlow: s.screen === 'flow', inClosed: s.screen === 'closed',
-            isIntro: k === 'intro', isBasic: k === 'basic', isBirth: k === 'birth', isItems: k === 'items', isPay: k === 'pay', isDone: k === 'done',
+            isIntro: k === 'intro', isBasic: k === 'basic', isBirth: k === 'birth', isItems: k === 'items', isPuduFullForm: k === 'pudu_full_form', isPay: k === 'pay', isDone: k === 'done',
             showFooter: k !== 'done', showFooterTotal: (k === 'items' || k === 'pay'), showProgress: k !== 'done',
             cerName: cer.name, cerSub: cer.sub, cerPeriod: cer.period, cerPlace: cer.place, cerDesc: cer.desc, cerYear: cer.year || '',
             itemsTitle: cer.itemsTitle, itemsNote: cer.itemsNote,
@@ -3210,6 +3394,7 @@
             bank: BANK_INFO[s.ceremony] || BANK_INFO.pudu,
             attendPeaceVM: radioVM(this.attendPeaceOpts, s.apeace, (v) => this.setState({ apeace: v })),
             attendWealthVM: radioVM(this.attendWealthOpts, s.awealth, (v) => this.setState({ awealth: v })),
+            jiapuOpts: radioVM(this.jiapuOptsRaw, s.puduData.jiapuMaterial, (v) => this.setState({ puduData: { ...s.puduData, jiapuMaterial: v } })),
             famContact: s.famContact, famPhone: s.famPhone,
             onFamContact: (e) => this.setState({ famContact: e.target.value }),
             onFamPhone: (e) => this.setState({ famPhone: e.target.value }),
@@ -3218,23 +3403,31 @@
             groups: this.buildGroups(),
             selList: sel.list, totalLabel: this.f(sel.total),
             countLabel: sel.list.length > 0 ? (sel.list.length + ' 項') : '尚未選擇',
+            qty: s.qty,
+            pd: s.puduData,
+            onPdName: e => this.setPuduVal('name', e.target.value),
+            onPdPhone: e => this.setPuduVal('phone', e.target.value),
+            onPdZanP: e => this.setPuduVal('zanPersonal', e.target.value),
+            onPdZanC: e => this.setPuduVal('zanCompany', e.target.value),
+            onPdJiaQty: e => this.setPuduVal('jiaQty', e.target.value),
+            puduJiapu: s.puduData.jiapu.map((x, i) => ({ ...x, onAncestor: e => this.setPuduArr('jiapu', i, 'ancestor', e.target.value), onYang: e => this.setPuduArr('jiapu', i, 'yang', e.target.value), onAddress: e => this.setPuduArr('jiapu', i, 'address', e.target.value) })),
+            puduChaodu: s.puduData.chao.map((x, i) => ({ ...x, onDeceased: e => this.setPuduArr('chao', i, 'deceased', e.target.value), onOldName: e => this.setPuduArr('chao', i, 'oldName', e.target.value), onBirthDeath: e => this.setPuduArr('chao', i, 'birthDeath', e.target.value), onYang: e => this.setPuduArr('chao', i, 'yang', e.target.value) })),
+            puduFachan: s.puduData.fachan.map((x, i) => ({ text: x, onText: e => this.setPuduArr('fachan', i, 'text', e.target.value) })),
+            onPdSuixi: e => this.setPuduVal('suixi', e.target.value),
+            onPdPayName: e => this.setPuduVal('payName', e.target.value),
+            onPdPayAmt: e => this.setPuduVal('payAmt', e.target.value),
+            onPdPayDate: e => this.setPuduVal('payDate', e.target.value),
+            onPdPayLast5: e => this.setPuduVal('payLast5', e.target.value),
+            onPdPayMemo: e => this.setPuduVal('payMemo', e.target.value),
             years: ROC_YEARS, months: monthOptions, days: DAYS, shichens: SHICHENS,
             fam: s.fam, mem: s.mem, suixi: s.suixi, last5: s.last5, receipt: s.receipt,
-            doneName: s.fam.contact || '—',
+            doneName: (s.ceremony === 'pudu' ? s.puduData.name : s.fam.contact) || '—',
             gMaleSty: this.segSty(s.mem.gender === '男'), gFemaleSty: this.segSty(s.mem.gender === '女'),
             cLunarSty: this.segSty(s.mem.calType === 'lunar'), cSolarSty: this.segSty(s.mem.calType === 'solar'),
             openLighting: () => this.openCer('lighting'), openPudu: () => this.openCer('pudu'), openLidou: () => this.openCer('lidou'),
             showClosedDemo: () => this.setState({ screen: 'closed' }),
             goHome: () => this.goHome(), next: () => this.next(), back: () => this.back(), onPrimary: () => this.next(),
-            setPanel: (el) => { this.panelEl = el; },
-            onContact: (e) => this.setFam('contact', e.target.value), onPhone: (e) => this.setFam('phone', e.target.value),
-            onAddress: (e) => this.setFam('address', e.target.value), onNote: (e) => this.setFam('note', e.target.value),
-            gMale: () => this.setMem('gender', '男'), gFemale: () => this.setMem('gender', '女'),
-            cLunar: () => this.setMem('calType', 'lunar'), cSolar: () => this.setMem('calType', 'solar'),
-            onYear: (e) => this.setMem('year', e.target.value), onMonth: (e) => this.setMem('month', e.target.value),
-            onDay: (e) => this.setMem('day', e.target.value), onShichen: (e) => this.setMem('shichen', e.target.value),
-            onSuixi: (e) => this.setState({ suixi: (e.target.value || '').replace(/[^0-9]/g, '') }),
-            onLast5: (e) => this.setState({ last5: (e.target.value || '').replace(/[^0-9]/g, '').slice(0, 5) })
+            setPanel: (el) => { this.panelEl = el; }
           };
         }
       }
