@@ -2388,11 +2388,10 @@
                   
                   
                   
-                  <!-- PUDU FULL FORM -->
-                  <sc-if value="{{ isPuduFullForm }}" hint-placeholder-val="{{ false }}">
+                  
+                  <!-- PUDU BASIC -->
+                  <sc-if value="{{ isPuduBasic }}" hint-placeholder-val="{{ false }}">
                     <div style="animation: fadeUp 0.4s ease both;">
-                      
-                      <!-- 基本資料 -->
                       <div class="ceremony-card" style="padding:20px; margin-bottom: 24px;">
                         <div style="font-family: 'Noto Serif TC', serif; font-weight: 700; font-size: 19px; color: #3b3128; margin-bottom: 16px;">基本資料</div>
                         <label class="form-label">姓名 <span style="color:red">*</span></label>
@@ -2400,8 +2399,12 @@
                         <label class="form-label">電話 <span style="color:red">*</span></label>
                         <input class="form-input" value="{{ pd.phone }}" oninput="{{ onPdPhone }}" placeholder="請輸入電話">
                       </div>
+                    </div>
+                  </sc-if>
 
-                      <!-- 贊普 -->
+                  <!-- PUDU ZANPU -->
+                  <sc-if value="{{ isPuduZanpu }}" hint-placeholder-val="{{ false }}">
+                    <div style="animation: fadeUp 0.4s ease both;">
                       <div class="ceremony-card" style="padding:20px; margin-bottom: 24px;">
                         <div style="font-family: 'Noto Serif TC', serif; font-weight: 700; font-size: 19px; color: #3b3128; margin-bottom: 8px;">贊普：費用1500</div>
                         <div style="font-size: 13.5px; color: #8A7A55; margin-bottom: 16px; line-height: 1.6;">佈施無主之孤魂．供食.供財.助孤魂脫惡獲福．有所依歸.廣積陰德。<br>供品捐助需要援助之人,發善念衍善舉 陽德福報.陰德陽功俱全。<br>註：贊普物資全部捐贈。</div>
@@ -2412,8 +2415,12 @@
                         <label class="form-label">——公司行號——桌數 (範例: 境心景觀設計公司20桌)</label>
                         <textarea class="form-input" style="height: 80px;" placeholder="請輸入" oninput="{{ onPdZanC }}">{{ pd.zanCompany }}</textarea>
                       </div>
+                    </div>
+                  </sc-if>
 
-                      <!-- 報恩家普 -->
+                  <!-- PUDU JIAPU -->
+                  <sc-if value="{{ isPuduJiapu }}" hint-placeholder-val="{{ false }}">
+                    <div style="animation: fadeUp 0.4s ease both;">
                       <div class="ceremony-card" style="padding:20px; margin-bottom: 24px;">
                         <div style="font-family: 'Noto Serif TC', serif; font-weight: 700; font-size: 19px; color: #3b3128; margin-bottom: 8px;">報恩家普：費用3000</div>
                         <div style="font-size: 13.5px; color: #8A7A55; margin-bottom: 16px; line-height: 1.6;">普渡歷代祖先，祖先業力功過代代相傳對家族運勢影響甚鉅,<br>慎終追遠超渡祖先，是對家運對自己以及後代子孫最好的傳承果報。</div>
@@ -2443,8 +2450,12 @@
                           </sc-for>
                         </div>
                       </div>
+                    </div>
+                  </sc-if>
 
-                      <!-- 薦拔超渡 -->
+                  <!-- PUDU CHAODU -->
+                  <sc-if value="{{ isPuduChaodu }}" hint-placeholder-val="{{ false }}">
+                    <div style="animation: fadeUp 0.4s ease both;">
                       <div class="ceremony-card" style="padding:20px; margin-bottom: 24px;">
                         <div style="font-family: 'Noto Serif TC', serif; font-weight: 700; font-size: 19px; color: #3b3128; margin-bottom: 8px;">薦拔超渡：費用3600</div>
                         <div style="font-size: 13.5px; color: #8A7A55; margin-bottom: 16px; line-height: 1.6;">旨在為歷代祖先、冤親、嬰靈、往生寵物及指定亡者誦經超薦、禮懺迴向...</div>
@@ -2463,8 +2474,12 @@
                           </div>
                         </sc-for>
                       </div>
+                    </div>
+                  </sc-if>
 
-                      <!-- 赦罪法懺 -->
+                  <!-- PUDU FACHAN -->
+                  <sc-if value="{{ isPuduFachan }}" hint-placeholder-val="{{ false }}">
+                    <div style="animation: fadeUp 0.4s ease both;">
                       <div class="ceremony-card" style="padding:20px; margin-bottom: 24px;">
                         <div style="font-family: 'Noto Serif TC', serif; font-weight: 700; font-size: 19px; color: #3b3128; margin-bottom: 8px;">赦罪法懺：費用免費</div>
                         <div style="font-size: 13.5px; color: #8A7A55; margin-bottom: 16px; line-height: 1.6;">填寫範例：<br>姓名：祁美麗（改名前舊名：祁健康）<br>生辰：國曆66年6月6日<br>地址：台北市中華路二段55號</div>
@@ -2476,8 +2491,12 @@
                           </div>
                         </sc-for>
                       </div>
+                    </div>
+                  </sc-if>
 
-                      <!-- 匯款資料 -->
+                  <!-- PUDU PAY -->
+                  <sc-if value="{{ isPuduPay }}" hint-placeholder-val="{{ false }}">
+                    <div style="animation: fadeUp 0.4s ease both;">
                       <div class="ceremony-card" style="padding:20px; margin-bottom: 24px;">
                         <div style="font-family: 'Noto Serif TC', serif; font-weight: 700; font-size: 19px; color: #3b3128; margin-bottom: 8px;">額外資料與匯款</div>
                         <div style="font-size: 13.5px; color: #8A7A55; margin-bottom: 16px; line-height: 1.6;">
@@ -2495,11 +2514,10 @@
                         <label class="form-label">匯款日期 <span style="color:red">*</span></label>
                         <input class="form-input" value="{{ pd.payDate }}" oninput="{{ onPdPayDate }}" style="margin-bottom: 12px;" placeholder="如 2026/07/15">
                         <label class="form-label">匯款帳號末5碼 <span style="color:red">*</span></label>
-                        <input class="form-input" value="{{ pd.payLast5 }}" oninput="{{ onPdPayLast5 }}" style="margin-bottom: 12px;">
+                        <input class="form-input" value="{{ pd.payLast5 }}" oninput="{{ onPdPayLast5 }}" style="margin-bottom: 12px;" placeholder="後 5 碼">
                         <label class="form-label">備註</label>
                         <textarea class="form-input" style="height: 60px;" oninput="{{ onPdPayMemo }}">{{ pd.payMemo }}</textarea>
                       </div>
-
                     </div>
                   </sc-if>
 
@@ -3244,14 +3262,22 @@
         }
 
         getStepsArr() {
-          if (this.state.ceremony === 'pudu') return ['intro', 'pudu_full_form', 'done'];
+          if (this.state.ceremony === 'pudu') {
+            return ['intro', 'pudu_basic', 'pudu_zanpu', 'pudu_jiapu', 'pudu_chaodu', 'pudu_fachan', 'pudu_pay', 'done'];
+          }
           return this.STEPS;
         }
 
         stepKey() { return this.getStepsArr()[this.state.step]; }
         canNext() {
           const k = this.stepKey(); const s = this.state;
-          if (k === 'pudu_full_form') return !!(s.puduData.name.trim() && s.puduData.phone.trim().length >= 8);
+          if (k === 'pudu_basic') return !!(s.puduData.name.trim() && s.puduData.phone.trim().length >= 8);
+          if (k === 'pudu_zanpu') return true;
+          if (k === 'pudu_jiapu') return true;
+          if (k === 'pudu_chaodu') return true;
+          if (k === 'pudu_fachan') return true;
+          if (k === 'pudu_pay') return s.puduData.payLast5.trim().length === 5 && s.puduData.payName.trim() && s.puduData.payDate.trim();
+
           if (k === 'basic') return !!(s.fam.contact.trim() && s.fam.phone.trim().length >= 8);
           if (k === 'birth') return !!(s.mem.year && s.mem.month && s.mem.day && s.mem.shichen);
           if (k === 'items') {
@@ -3362,15 +3388,15 @@
           const s = this.state; const cer = CEREMONIES[s.ceremony] || {};
           const k = this.stepKey();
           const sel = this.selection();
-          const stepTitles = { intro: '法會介紹', basic: '基本資料', birth: '生辰資料', items: cer.itemsTitle || '選擇項目', pudu_full_form: '填寫表單資料', pay: '確認與匯款', done: '報名完成' };
+          const stepTitles = { intro: '法會介紹', basic: '基本資料', birth: '生辰資料', items: cer.itemsTitle || '選擇項目', pudu_basic: '基本資料', pudu_zanpu: '贊普', pudu_jiapu: '報恩家普', pudu_chaodu: '薦拔超渡', pudu_fachan: '赦罪法懺', pudu_pay: '額外資料與匯款', pay: '確認與匯款', done: '報名完成' };
           
-          let progLabels = s.ceremony === 'pudu' ? ['介紹', '填寫與匯款'] : ['介紹', '資料', '生辰', '選項', '付款'];
+          let progLabels = s.ceremony === 'pudu' ? ['介紹', '基本', '贊普', '家普', '超渡', '法懺', '匯款'] : ['介紹', '資料', '生辰', '選項', '付款'];
           const cur = s.step;
           const progress = progLabels.map((label, i) => {
             const state = cur > i ? 'done' : (cur === i ? 'now' : 'todo');
-            return { label, bar: state === 'todo' ? '#E2D4B6' : '#B23B34', color: state === 'now' ? '#B23B34' : (state === 'done' ? '#A8823C' : '#B3A88F'), weight: state === 'now' ? '700' : '500' };
+            return { label, bar: state === 'todo' ? '#E2D4B6' : '#B23B34', color: state === 'now' ? '#B23B34' : (state === 'done' ? '#A8823C' : '#B3A88F'), weight: state === 'now' ? '700' : '500', isCompact: s.ceremony === 'pudu' };
           });
-          const primaryLabels = { intro: '開始報名', basic: '下一步', birth: '下一步', items: '前往付款', pudu_full_form: '確認送出', pay: '確認送出', done: '' };
+          const primaryLabels = { intro: '開始報名', basic: '下一步', birth: '下一步', items: '前往付款', pudu_basic: '下一步', pudu_zanpu: '下一步', pudu_jiapu: '下一步', pudu_chaodu: '下一步', pudu_fachan: '前往匯款資料', pudu_pay: '確認送出', pay: '確認送出', done: '' };
           const can = this.canNext();
           const isLighting = s.ceremony === 'lighting';
           const monthOptions = s.mem.calType === 'lunar' ? MONTHS_LUNAR : MONTHS_SOLAR;
@@ -3386,7 +3412,8 @@
 
           return {
             inFlow: s.screen === 'flow', inClosed: s.screen === 'closed',
-            isIntro: k === 'intro', isBasic: k === 'basic', isBirth: k === 'birth', isItems: k === 'items', isPuduFullForm: k === 'pudu_full_form', isPay: k === 'pay', isDone: k === 'done',
+            isIntro: k === 'intro', isBasic: k === 'basic', isBirth: k === 'birth', isItems: k === 'items', isPay: k === 'pay', isDone: k === 'done',
+            isPuduBasic: k === 'pudu_basic', isPuduZanpu: k === 'pudu_zanpu', isPuduJiapu: k === 'pudu_jiapu', isPuduChaodu: k === 'pudu_chaodu', isPuduFachan: k === 'pudu_fachan', isPuduPay: k === 'pudu_pay',
             showFooter: k !== 'done', showFooterTotal: (k === 'items' || k === 'pay'), showProgress: k !== 'done',
             cerName: cer.name, cerSub: cer.sub, cerPeriod: cer.period, cerPlace: cer.place, cerDesc: cer.desc, cerYear: cer.year || '',
             itemsTitle: cer.itemsTitle, itemsNote: cer.itemsNote,
